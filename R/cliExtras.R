@@ -110,13 +110,15 @@ condition_as_fn <- function(condition,
   if (!rlang::is_function(condition)) {
     condition <- rlang::as_function(condition)
   }
+
   condition <- condition(.data)
 
-  cli_abort_ifnot(
+  if (rlang::is_logical(condition)) {
+    return(condition)
+  }
+
+  cli_abort(
     "{.code condition(.data)} did not return a logical condition.",
-    condition = rlang::is_logical(condition),
     call = call
   )
-
-  condition
 }
