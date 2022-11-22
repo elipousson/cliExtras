@@ -80,6 +80,8 @@ cli_abort_ifnot <- function(...,
 
 #' @name cli_warn_ifnot
 #' @rdname cli_abort_ifnot
+#' @export
+#' @importFrom rlang is_logical
 cli_warn_ifnot <- function(...,
                            condition = FALSE,
                            .data = NULL,
