@@ -146,3 +146,21 @@ condition_as_fn <- function(condition,
     call = call
   )
 }
+
+
+#' Format a list of items as an unordered list with cli_ul()
+#'
+#' @rdname cli_ul_items
+#' @export
+#' @importFrom cli cli_ul cli_li cli_end
+cli_ul_items <- function(items) {
+  items <- sapply(items, as.character)
+  cli::cli_ul()
+  sapply(
+    seq_along(items),
+    function(x) {
+      cli::cli_li("{.code {names(items)[[x]]}}: {.val {items[[x]]}}")
+    }
+  )
+  cli::cli_end()
+}
