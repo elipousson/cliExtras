@@ -3,6 +3,7 @@
 \name{cli_abort_ifnot}
 \alias{cli_abort_ifnot}
 \alias{cli_warn_ifnot}
+\alias{cli_inform_ifnot}
 \title{Signal an error, warning or message with a cli formatted message if a
 condition is FALSE}
 \usage{
@@ -15,6 +16,8 @@ cli_abort_ifnot(
 )
 
 cli_warn_ifnot(..., condition = FALSE, .data = NULL, .envir = parent.frame())
+
+cli_inform_ifnot(..., condition = FALSE, .data = NULL, .envir = parent.frame())
 }
 \arguments{
 \item{...}{Passed to \code{\link[rlang:abort]{rlang::abort()}}, \code{\link[rlang:abort]{rlang::warn()}} or

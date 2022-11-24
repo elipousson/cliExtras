@@ -2,6 +2,7 @@
 
 export(cli_abort_ifnot)
 export(cli_ask)
+export(cli_inform_ifnot)
 export(cli_warn_ifnot)
 export(cli_yesno)
 importFrom(cli,cli_abort)

@@ -11,12 +11,12 @@
 #' @importFrom rlang is_interactive
 #' @importFrom utils menu
 cli_yesno <- function(message,
-                     yes = c("Yes", "Definitely", "For sure", "Yup", "Yeah", "I agree", "Absolutely"),
-                     no = c("No way", "Not now", "Negative", "No", "Nope", "Absolutely not"),
-                     n_yes = 1,
-                     n_no = 1,
-                     call = .envir,
-                     .envir = parent.frame()) {
+                      yes = c("Yes", "Definitely", "For sure", "Yup", "Yeah", "I agree", "Absolutely"),
+                      no = c("No way", "Not now", "Negative", "No", "Nope", "Absolutely not"),
+                      n_yes = 1,
+                      n_no = 1,
+                      call = .envir,
+                      .envir = parent.frame()) {
   cli_abort_ifnot(
     c(
       "User input required, but session is not interactive.",
@@ -100,6 +100,30 @@ cli_warn_ifnot <- function(...,
   invisible(NULL)
 }
 
+
+#' @name cli_inform_ifnot
+#' @rdname cli_abort_ifnot
+#' @export
+#' @importFrom rlang is_logical
+cli_inform_ifnot <- function(...,
+                             condition = FALSE,
+                             .data = NULL,
+                             .envir = parent.frame()) {
+  if (!rlang::is_logical(condition)) {
+    condition <- condition_as_fn(condition, .data, call = call)
+  }
+
+  if (!condition) {
+    cli_inform(
+      ...,
+      .envir = .envir
+    )
+  }
+
+  invisible(NULL)
+}
+
+
 #' Use condition argument as function
 #'
 #' @noRd
@@ -118,7 +142,7 @@ condition_as_fn <- function(condition,
   }
 
   cli_abort(
-    "{.code condition(.data)} did not return a logical condition.",
+    "{.fn condition} returned a {.cls {class(condition)} object, not logical.",
     call = call
   )
 }
