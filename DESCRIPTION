@@ -1,17 +1,19 @@
-Package: cliExtras
 Type: Package
+Package: cliExtras
 Title: A Collection of Helper Functions for the cli package
 Version: 0.1.0
 Authors@R: 
     person("Eli", "Pousson", , "eli.pousson@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8280-1706"))
 Maintainer: Eli Pousson <eli.pousson@gmail.com>
-Description: Extends the cli package with user response prompts and stopifnot equivalents.
+Description: Extends the cli package with user response prompts and
+    stopifnot equivalents.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
 Imports: 
     cli,
     rlang,
     utils
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)

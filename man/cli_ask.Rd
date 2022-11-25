@@ -8,9 +8,9 @@ cli_ask(message, ..., prompt = ">> ", .envir = parent.frame())
 }
 \arguments{
 \item{message}{Primary prompt to user prefixed by ">" when passed to
-[cli_inform()].}
+\code{\link[=cli_inform]{cli_inform()}}.}
 
-\item{...}{Secondary messages passed to [cli_inform()]}
+\item{...}{Secondary messages passed to \code{\link[=cli_inform]{cli_inform()}}}
 
 \item{prompt}{Character to show as user prompt in console following displayed
 message.}

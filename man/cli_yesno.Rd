@@ -15,7 +15,7 @@ cli_yesno(
 )
 }
 \arguments{
-\item{message}{Passed to [cli_inform()]}
+\item{message}{Passed to \code{\link[=cli_inform]{cli_inform()}}}
 
 \item{yes, no}{Character strings with yes and no options.}
 
@@ -38,6 +38,6 @@ For more information about error calls, see \ifelse{html}{\link[rlang:topic-erro
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }
 \description{
-This is a modified version of [yesno::yesno()] and [usethis::ui_yeah()] to
-work with [cli_inform()].
+This is a modified version of \code{\link[yesno:yesno]{yesno::yesno()}} and \code{\link[usethis:ui-questions]{usethis::ui_yeah()}} to
+work with \code{\link[=cli_inform]{cli_inform()}}.
 }
