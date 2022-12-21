@@ -168,22 +168,19 @@ cli_ul_items <- function(items) {
 #' Display a list of file paths
 #'
 #' @param path One or more file paths.
-#' @param ... Passed to message for [cli_inform()]
-#' @param .envir Environment passed to [cli_inform()], Default: parent.frame()
+#' @param msg Passed to message for [cli_inform()]
 #' @seealso
 #'  [cli::cli_bullets()]
 #' @rdname cli_paths
 #' @export
-#' @importFrom cli cli_bullets
+#' @importFrom cli cli_inform cli_bullets
 #' @importFrom rlang set_names
 cli_paths <- function(path,
-                      ...,
-                      .envir = parent.frame()) {
+                      msg) {
   len_path <- length(path)
 
-  cli_inform(
-    c("v" = paste0(..., " {len_path} file{?s}:")),
-    .envir = .envir
+  cli::cli_inform(
+    c("v" = paste(msg, "{len_path} file{?s}:"))
   )
 
   path <- paste0("{.file ", path, "}")

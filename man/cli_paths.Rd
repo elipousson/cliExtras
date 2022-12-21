@@ -4,14 +4,12 @@
 \alias{cli_paths}
 \title{Display a list of file paths}
 \usage{
-cli_paths(path, ..., .envir = parent.frame())
+cli_paths(path, msg)
 }
 \arguments{
 \item{path}{One or more file paths.}
 
-\item{...}{Passed to message for \code{\link[=cli_inform]{cli_inform()}}}
-
-\item{.envir}{Environment passed to \code{\link[=cli_inform]{cli_inform()}}, Default: parent.frame()}
+\item{msg}{Passed to message for \code{\link[=cli_inform]{cli_inform()}}}
 }
 \description{
 Display a list of file paths
