@@ -183,6 +183,10 @@ cli_paths <- function(path,
     c("v" = paste(msg, "{len_path} file{?s}:"))
   )
 
+  if (length(unique(dirname(path))) == 1) {
+    path <- basename(path)
+  }
+
   path <- paste0("{.file ", path, "}")
   cli::cli_bullets(rlang::set_names(path, rep("*", len_path)))
 }
