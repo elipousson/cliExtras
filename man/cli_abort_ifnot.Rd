@@ -4,30 +4,34 @@
 \alias{cli_abort_ifnot}
 \alias{cli_warn_ifnot}
 \alias{cli_inform_ifnot}
-\title{Signal an error, warning or message with a cli formatted message if a
-condition is FALSE}
+\title{Signal an error, warning, or message with a cli formatted message if any
+expressions in ... are not all TRUE}
 \usage{
 cli_abort_ifnot(
   ...,
-  condition = FALSE,
-  .data = NULL,
+  message = NULL,
   call = .envir,
-  .envir = parent.frame()
+  .envir = parent.frame(),
+  .frame = .envir,
+  condition = NULL
 )
 
-cli_warn_ifnot(..., condition = FALSE, .data = NULL, .envir = parent.frame())
+cli_warn_ifnot(..., message = NULL, .envir = parent.frame(), condition = NULL)
 
-cli_inform_ifnot(..., condition = FALSE, .data = NULL, .envir = parent.frame())
+cli_inform_ifnot(
+  ...,
+  message = NULL,
+  .envir = parent.frame(),
+  condition = NULL
+)
 }
 \arguments{
-\item{...}{Passed to \code{\link[rlang:abort]{rlang::abort()}}, \code{\link[rlang:abort]{rlang::warn()}} or
-\code{\link[rlang:abort]{rlang::inform()}}.}
+\item{...}{Any number of R expressions which should each evaluate to a
+logical vector. If ... is named, the names will be passed to as the message
+parameter. If message is provided, any names for the logical expressions
+are ignored.}
 
-\item{condition}{if condition is not logical, it is assumed to be a single
-argument function that is applied to the object passed to the .data
-parameter.}
-
-\item{.data}{object to test with condition if condition is a function.}
+\item{message}{It is formatted via a call to \code{\link[cli:cli_bullets]{cli_bullets()}}.}
 
 \item{call}{The execution environment of a currently running
 function, e.g. \code{call = caller_env()}. The corresponding function
@@ -44,8 +48,15 @@ respectively not display any call or hard-code a code to display.
 For more information about error calls, see \ifelse{html}{\link[rlang:topic-error-call]{Including function calls in error messages}}{\link[rlang:topic-error-call]{Including function calls in error messages}}.}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
+
+\item{.frame}{The throwing context. Used as default for
+\code{.trace_bottom}, and to determine the internal package to mention
+in internal errors when \code{.internal} is \code{TRUE}.}
+
+\item{condition}{Deprecated. Logical. If \code{FALSE}, signal an error, warning,
+or message. Defaults to \code{NULL}.}
 }
 \description{
-Signal an error, warning or message with a cli formatted message if a
-condition is FALSE
+Signal an error, warning, or message with a cli formatted message if any
+expressions in ... are not all TRUE
 }

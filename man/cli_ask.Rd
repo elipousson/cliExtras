@@ -7,13 +7,13 @@
 cli_ask(message, ..., prompt = ">> ", .envir = parent.frame())
 }
 \arguments{
-\item{message}{Primary prompt to user prefixed by ">" when passed to
-\code{\link[=cli_inform]{cli_inform()}}.}
+\item{message}{Primary prompt to user passed to \code{\link[=cli_inform]{cli_inform()}}.}
 
-\item{...}{Secondary messages passed to \code{\link[=cli_inform]{cli_inform()}}}
+\item{...}{Passed to \code{\link[rlang:abort]{rlang::abort()}}, \code{\link[rlang:abort]{rlang::warn()}} or
+\code{\link[rlang:abort]{rlang::inform()}}.}
 
-\item{prompt}{Character to show as user prompt in console following displayed
-message.}
+\item{prompt}{Characters to show as user prompt in console following
+displayed message.}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }

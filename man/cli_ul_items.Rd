@@ -4,7 +4,16 @@
 \alias{cli_ul_items}
 \title{Format a list of items as an unordered list with cli_ul()}
 \usage{
-cli_ul_items(items)
+cli_ul_items(items, style = c("code", "val"), sep = ": ")
+}
+\arguments{
+\item{items}{Character vector of items, or \code{NULL}.}
+
+\item{style}{Length 2 character vector indicating cli style to use for names
+of items and style to use for items.}
+
+\item{sep}{Length 1 character vector with separator between item names and
+names.}
 }
 \description{
 Format a list of items as an unordered list with cli_ul()
