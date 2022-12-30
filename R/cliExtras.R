@@ -29,7 +29,7 @@ cli_yesno <- function(message,
   qs <- c(sample(yes, n_yes), sample(no, n_no))
   rand <- sample(length(qs))
 
-  cli_inform(message, .envir = .envir)
+  cli::cli_inform(message, .envir = .envir)
   utils::menu(qs[rand]) == which(rand == 1)
 }
 
@@ -114,6 +114,7 @@ cli_abort_ifnot <- function(...,
 
 #' @name cli_warn_ifnot
 #' @rdname cli_abort_ifnot
+#' @export
 cli_warn_ifnot <- function(...,
                            message = NULL,
                            .envir = parent.frame(),
@@ -129,6 +130,7 @@ cli_warn_ifnot <- function(...,
 
 #' @name cli_inform_ifnot
 #' @rdname cli_abort_ifnot
+#' @export
 cli_inform_ifnot <- function(...,
                              message = NULL,
                              .envir = parent.frame(),
