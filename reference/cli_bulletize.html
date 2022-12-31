@@ -57,7 +57,12 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>bullet</dt>
+    <dl><dt>items</dt>
+<dd><p>A named vector or list to use in creating a bulletted list with
+<code><a href="https://cli.r-lib.org/reference/cli_bullets.html" class="external-link">cli::cli_bullets()</a></code>.</p></dd>
+
+
+<dt>bullet</dt>
 <dd><p>Character to use for bullet. Defaults to "".</p></dd>
 
 
@@ -75,6 +80,11 @@ not displayed. Defaults to 2.</p></dd>
 
 <dt>style</dt>
 <dd><p>A cli style name, e.g. code, val, file, url</p></dd>
+
+
+<dt>sep</dt>
+<dd><p>Separator string to insert between item name and item if items is
+a named list or vector. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt>id</dt>
