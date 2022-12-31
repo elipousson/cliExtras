@@ -17,6 +17,9 @@ cli_bulletize(
 )
 }
 \arguments{
+\item{items}{A named vector or list to use in creating a bulletted list with
+\code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
+
 \item{bullet}{Character to use for bullet. Defaults to "".}
 
 \item{n_show}{The maximum number of items to include in the bullet list.
@@ -28,6 +31,9 @@ less than n_fudge, they are included in the bullet list and the summary is
 not displayed. Defaults to 2.}
 
 \item{style}{A cli style name, e.g. code, val, file, url}
+
+\item{sep}{Separator string to insert between item name and item if items is
+a named list or vector. Defaults to \code{NULL}.}
 
 \item{id}{Optional id of the \code{div.bullets} element, can be used in themes.}
 

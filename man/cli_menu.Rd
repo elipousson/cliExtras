@@ -33,6 +33,9 @@ displayed menu options. Defaults to "Selection: " (matching \code{\link[utils:me
 \item{labels}{Label style. Options include "arabic", "alph", "Alph", "alpha",
 "Alpha", "roman", or "Roman".}
 
+\item{sep}{Separator string to insert between item name and item if items is
+a named list or vector. Defaults to \code{NULL}.}
+
 \item{bullet}{Character to use for bullet. Defaults to "".}
 
 \item{call}{Default: \code{\link[=parent.frame]{parent.frame()}}. Passed to input checking functions
