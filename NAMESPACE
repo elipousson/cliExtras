@@ -2,6 +2,7 @@
 
 export(bracketize)
 export(bulletize)
+export(cli_abort_if)
 export(cli_abort_ifnot)
 export(cli_ask)
 export(cli_bulletize)

@@ -32,6 +32,7 @@ cli_abort_ifnot <- function(...,
 
 #' @name cli_abort_if
 #' @rdname cli_abort_ifnot
+#' @export
 cli_abort_if <- function(...,
                          message = NULL,
                          call = .envir,
