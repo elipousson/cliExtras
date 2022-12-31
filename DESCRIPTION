@@ -11,6 +11,7 @@ Description: Extends the cli package with user response prompts and
 License: MIT + file LICENSE
 Imports: 
     cli,
+    lifecycle,
     rlang,
     utils
 Encoding: UTF-8
