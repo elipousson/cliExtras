@@ -8,6 +8,13 @@
 \description{
 Extends the cli package with user response prompts and stopifnot equivalents.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://elipousson.github.io/cliExtras/}
+}
+
+}
 \author{
 \strong{Maintainer}: Eli Pousson \email{eli.pousson@gmail.com} (\href{https://orcid.org/0000-0001-8280-1706}{ORCID}) [copyright holder]
 
