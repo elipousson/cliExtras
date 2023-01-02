@@ -10,7 +10,9 @@ cli_bulletize(
   n_show = Inf,
   n_fudge = 2,
   style = NULL,
+  before = NULL,
   sep = NULL,
+  after = NULL,
   id = NULL,
   class = NULL,
   .envir = parent.frame()
