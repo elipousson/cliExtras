@@ -40,6 +40,9 @@
     <loc>https://elipousson.github.io/cliExtras/reference/cli_paths.html</loc>
   </url>
   <url>
+    <loc>https://elipousson.github.io/cliExtras/reference/cli_progress_pipe.html</loc>
+  </url>
+  <url>
     <loc>https://elipousson.github.io/cliExtras/reference/cli_quiet.html</loc>
   </url>
   <url>
@@ -53,5 +56,8 @@
   </url>
   <url>
     <loc>https://elipousson.github.io/cliExtras/reference/quiet_cli_inform.html</loc>
+  </url>
+  <url>
+    <loc>https://elipousson.github.io/cliExtras/reference/register_cli_format.html</loc>
   </url>
 </urlset>
