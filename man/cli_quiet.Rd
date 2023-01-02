@@ -3,7 +3,7 @@
 \name{cli_quiet}
 \alias{cli_quiet}
 \alias{set_cli_quiet}
-\title{Helper functions to get or set the cli.quiet option}
+\title{Helper functions to get or set the cliExtras.quiet option}
 \usage{
 cli_quiet(quiet = FALSE)
 
@@ -14,6 +14,6 @@ set_cli_quiet(quiet = FALSE)
 Defaults to \code{FALSE}.}
 }
 \description{
-\code{\link[=cli_quiet]{cli_quiet()}} gets the cli.quiet option and \code{\link[=set_cli_quiet]{set_cli_quiet()}} sets the
+\code{\link[=cli_quiet]{cli_quiet()}} gets the cliExtras.quiet option and \code{\link[=set_cli_quiet]{set_cli_quiet()}} sets the
 option.
 }
