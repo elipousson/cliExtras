@@ -39,7 +39,7 @@ For more information about error calls, see \ifelse{html}{\link[rlang:topic-erro
 }
 \description{
 Adapted from \code{\link[yesno:yesno]{yesno::yesno()}} and \code{\link[usethis:ui-questions]{usethis::ui_yeah()}} to work with
-\code{\link[=cli_inform]{cli_inform()}}. This function does not respect the cli.quiet option and
+\code{\link[=cli_inform]{cli_inform()}}. This function does not respect the cliExtras.quiet option and
 aborts if the session is not interactive.
 }
 \details{

@@ -45,7 +45,7 @@
 #' Yes No with Variable Responses using cli
 #'
 #' Adapted from [yesno::yesno()] and [usethis::ui_yeah()] to work with
-#' [cli_inform()]. This function does not respect the cli.quiet option and
+#' [cli_inform()]. This function does not respect the cliExtras.quiet option and
 #' aborts if the session is not interactive.
 #'
 #' The yesno and usethis packages are both available under an MIT license
@@ -80,7 +80,11 @@ cli_yesno <- function(message,
   qs <- c(sample(yes, n_yes), sample(no, n_no))
   rand <- sample(length(qs))
 
-  # FIXME: Switch to use cli_menu()
-  cli::cli_inform(message, .envir = .envir)
-  utils::menu(qs[rand]) == which(rand == 1)
+  cli_menu(
+    qs[rand],
+    title = message,
+    message = "",
+    ind = TRUE,
+    .envir = .envir
+  ) == which(rand == 1)
 }
