@@ -7,12 +7,13 @@
 cli_menu(
   choices,
   title = NULL,
-  message = NULL,
-  prompt = "Selection: ",
-  style = c("num", "val"),
+  message = "Enter your selection or press {.kbd 0} to exit.",
+  prompt = "Selection:",
   labels = "arabic",
-  sep = ". ",
+  sep = ": ",
   bullet = "",
+  exit = "0",
+  ind = FALSE,
   call = .envir,
   .envir = parent.frame()
 )
@@ -21,25 +22,35 @@ cli_menu(
 \item{choices}{Required list of choices. If named, use the names as the
 choice options.}
 
-\item{title}{Title for menu. Passed to \code{\link[cli:cli_h1]{cli::cli_h1()}}}
+\item{title}{Title for menu. Passed to \code{\link[cli:cli_h1]{cli::cli_h2()}}}
 
 \item{message}{Additional message to display after choices and before prompt.}
 
 \item{prompt}{Characters to show as user prompt in console following
-displayed menu options. Defaults to "Selection: " (matching \code{\link[utils:menu]{utils::menu()}})}
+displayed menu options. Defaults to "Selection:" (matching \code{\link[utils:menu]{utils::menu()}})}
 
-\item{style}{A cli style name, e.g. code, val, file, url}
+\item{labels}{Style to use for menu choices (from
+\link[isstatic:as_numbered_labels]{isstatic::as_numbered_labels}). Defaults to "arabic". Ignored if choices
+are a named vector or list.}
 
-\item{labels}{Label style. Options include "arabic", "alph", "Alph", "alpha",
-"Alpha", "roman", or "Roman".}
-
-\item{sep}{Separator string to insert between item name and item if items is
-a named list or vector. Defaults to \code{NULL}.}
+\item{sep}{Separator between choice name and value. Ignored if choices
+are a named vector or list.}
 
 \item{bullet}{Character to use for bullet. Defaults to "".}
 
-\item{call}{Default: \code{\link[=parent.frame]{parent.frame()}}. Passed to input checking functions
-to improve error message traceback.}
+\item{call}{The execution environment of a currently running
+function, e.g. \code{call = caller_env()}. The corresponding function
+call is retrieved and mentioned in error messages as the source
+of the error.
+
+You only need to supply \code{call} when throwing a condition from a
+helper function which wouldn't be relevant to mention in the
+message.
+
+Can also be \code{NULL} or a \link[rlang:topic-defuse]{defused function call} to
+respectively not display any call or hard-code a code to display.
+
+For more information about error calls, see \ifelse{html}{\link[rlang:topic-error-call]{Including function calls in error messages}}{\link[rlang:topic-error-call]{Including function calls in error messages}}.}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }
@@ -49,9 +60,11 @@ Display a Message then Read a Line from the Terminal
 \examples{
 \dontrun{
 if (interactive()) {
-  cli_menu(c("A", "B", "C"))
+  cli_menu(list("A", "B", "C"), title = "Pick a letter?")
 
   cli_menu(c("A", "B", "C"), labels = "Alpha")
+
+  cli_menu(list(list(1, 2, 3), "A", "B", "C"), title = "Pick from a list")
 }
 }
 }
