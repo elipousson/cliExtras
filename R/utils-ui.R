@@ -11,7 +11,8 @@
 #' - [set_bullets()] assigns bullets as the names for a vector.
 #'
 #' [bulletize()] is adapted from the gargle package (see
-#' [utils-ui.R](https://github.com/r-lib/gargle/blob/4021167fd2f7aca7194027bf73a5a06296ca03dc/R/utils-ui.R)). This function is available under a MIT license and is the work of the gargle
+#' [`utils-ui.R`](https://github.com/r-lib/gargle/blob/4021167fd2f7aca7194027bf73a5a06296ca03dc/R/utils-ui.R)).
+#' This function is available under a MIT license and is the work of the gargle
 #' authors.
 #'
 #' @name cli_helpers
@@ -49,7 +50,7 @@ stylize <- function(x,
                     .open = "{",
                     .close = "}",
                     collapse = NULL) {
-  if (!is.character(style) | style == "") {
+  if (!all(is.character(style)) | all(style == "")) {
     return(x)
   }
 
@@ -91,50 +92,48 @@ stylize <- function(x,
 
 #' @rdname cli_helpers
 #' @name bulletize
+#' @param bullet Character to use for bullet. Defaults to "".
 #' @param n_show The maximum number of items to include in the bullet list.
 #'   Defaults to 5.
 #' @param n_fudge The minimum number of items to include in summary of additional
 #'   bullet items. If the summary would only include a number of items equal or
 #'   less than n_fudge, they are included in the bullet list and the summary is
 #'   not displayed. Defaults to 2.
+#' @param sep,before,after Additional characters or character vectors applied
+#'   using `paste0(before, sep, out, after)`.
 #' @export
 #' @importFrom utils head
-#' @importFrom cli symbol
+#' @importFrom cli symbol cat_bullet
 bulletize <- function(x,
                       bullet = "*",
+                      sep = NULL,
+                      before = NULL,
+                      after = NULL,
+                      style = NULL,
                       n_show = 5,
                       n_fudge = 2,
-                      style = NULL,
                       bracket = FALSE) {
   n <- length(x)
   n_show_actual <- compute_n_show(n, n_show, n_fudge)
   out <- utils::head(x, n_show_actual)
 
-  out <- set_bullets(out, bullet)
-
-  n_not_shown <- n - n_show_actual
+  if (!is_all_null(c(before, sep, after))) {
+    out <- paste0(before, sep, out, after)
+  }
 
   if (!is.null(style)) {
     out <- stylize(out, style, bracket)
   }
 
+  out <- rlang::set_names(out, rep(bullet, n_show_actual))
+
+  n_not_shown <- n - n_show_actual
+
   if (n_not_shown == 0) {
     return(out)
   }
 
-  c(out, " " = paste0(cli::symbol$ellipsis, " and ", n_not_shown, " more."))
-}
-
-#' @rdname cli_helpers
-#' @name set_bullets
-#' @param bullet Character to use for bullet. Defaults to "".
-#' @param ... For [set_bullets()], additional named values to pass if the
-#'   current cli theme includes non-default bullets.
-#' @export
-#' @importFrom rlang set_names rep_along
-set_bullets <- function(x, bullet = "", ...) {
-  bullet <- check_cli_bullet(bullet, ...)
-  rlang::set_names(x, rlang::rep_along(x, bullet))
+  c(out, c(" " = paste0(cli::symbol$ellipsis, " and ", n_not_shown, " more")))
 }
 
 #' Compute number to show with fudge

@@ -5,7 +5,6 @@
 \alias{bracketize}
 \alias{stylize}
 \alias{bulletize}
-\alias{set_bullets}
 \title{Assorted helper functions to format text and vectors for cli messages}
 \usage{
 bracketize(..., .open = "{", .close = "}", collapse = NULL)
@@ -22,17 +21,17 @@ stylize(
 bulletize(
   x,
   bullet = "*",
+  sep = NULL,
+  before = NULL,
+  after = NULL,
+  style = NULL,
   n_show = 5,
   n_fudge = 2,
-  style = NULL,
   bracket = FALSE
 )
-
-set_bullets(x, bullet = "", ...)
 }
 \arguments{
-\item{...}{For \code{\link[=set_bullets]{set_bullets()}}, additional named values to pass if the
-current cli theme includes non-default bullets.}
+\item{...}{one or more \R objects, to be converted to character vectors.}
 
 \item{.open, .close}{Open and close bracket characters.}
 
@@ -46,6 +45,9 @@ current cli theme includes non-default bullets.}
 \item{bracket}{If \code{TRUE}, pass x to bracketize.}
 
 \item{bullet}{Character to use for bullet. Defaults to "".}
+
+\item{sep, before, after}{Additional characters or character vectors applied
+using \code{paste0(before, sep, out, after)}.}
 
 \item{n_show}{The maximum number of items to include in the bullet list.
 Defaults to 5.}
@@ -66,7 +68,8 @@ may be removed as my understanding of the cli package improves.
 }
 
 \code{\link[=bulletize]{bulletize()}} is adapted from the gargle package (see
-\href{https://github.com/r-lib/gargle/blob/4021167fd2f7aca7194027bf73a5a06296ca03dc/R/utils-ui.R}{utils-ui.R}). This function is available under a MIT license and is the work of the gargle
+\href{https://github.com/r-lib/gargle/blob/4021167fd2f7aca7194027bf73a5a06296ca03dc/R/utils-ui.R}{\code{utils-ui.R}}).
+This function is available under a MIT license and is the work of the gargle
 authors.
 }
 \examples{
