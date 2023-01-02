@@ -4,16 +4,16 @@
 \alias{cli_ask}
 \title{Display a Message then Read a Line from the Terminal}
 \usage{
-cli_ask(message, ..., prompt = ">> ", .envir = parent.frame())
+cli_ask(prompt = ">>", message = NULL, ..., .envir = parent.frame())
 }
 \arguments{
+\item{prompt}{Characters to show as user prompt in console following
+displayed message.}
+
 \item{message}{Primary prompt to user passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}.}
 
 \item{...}{Passed to \code{\link[rlang:abort]{rlang::abort()}}, \code{\link[rlang:abort]{rlang::warn()}} or
 \code{\link[rlang:abort]{rlang::inform()}}.}
-
-\item{prompt}{Characters to show as user prompt in console following
-displayed message.}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }

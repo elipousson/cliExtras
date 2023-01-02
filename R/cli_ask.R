@@ -7,8 +7,12 @@
 #'   displayed message.
 #' @inheritParams cli::cli_inform
 #' @export
-cli_ask <- function(message, ..., prompt = ">> ", .envir = parent.frame()) {
+#' @importFrom cli cli_inform cat_rule
+cli_ask <- function(prompt = ">>", message = NULL, ..., .envir = parent.frame()) {
   check_interactive()
-  cli::cli_inform(message, ..., .envir = .envir)
-  readline(prompt = prompt)
+  if (!is.null(message)) {
+    cli::cli_text(message, ..., .envir = .envir)
+  }
+
+  readline(paste0(prompt, "\u00a0"))
 }
