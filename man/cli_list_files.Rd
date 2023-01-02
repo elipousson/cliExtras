@@ -10,7 +10,7 @@ cli_list_files(
   full.names = FALSE,
   message = "{length(files)} file{?s} found in {.path {path}}:",
   bullet = "*",
-  n_show = 20,
+  n_show = 10,
   .envir = current_env(),
   return_list = FALSE,
   ...
@@ -37,7 +37,7 @@ cli_list_files(
 
 \item{n_show}{Number of file names to show in list. The remaining number of
 files n_show are noted at the end of the list but the file names are not
-displayed.}
+displayed. Defaults to 10.}
 
 \item{.envir}{Passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}. Defaults to
 \code{\link[rlang:stack]{rlang::current_env()}} rather than \code{\link[=parent.frame]{parent.frame()}} to support evaluation

@@ -8,7 +8,7 @@
 #'   of default message that includes the number of files found at the path.
 #' @param n_show Number of file names to show in list. The remaining number of
 #'   files n_show are noted at the end of the list but the file names are not
-#'   displayed.
+#'   displayed. Defaults to 10.
 #' @param return_list If `TRUE`, return the list of files after displaying the
 #'   cli message. Defaults to `FALSE`.
 #' @inheritDotParams base::list.files
@@ -23,24 +23,28 @@ cli_list_files <- function(path,
                            full.names = FALSE,
                            message = "{length(files)} file{?s} found in {.path {path}}:",
                            bullet = "*",
-                           n_show = 20,
+                           n_show = 10,
                            .envir = current_env(),
                            return_list = FALSE,
                            ...) {
   files <- list.files(path = path, pattern = pattern, full.names = full.names, ...)
 
-  quiet_cli_inform(
+  cli::cli_inform(
     message = message,
     .envir = .envir
   )
+  # style <- "field"
+  # if (full.names | (path == getwd())) {
+  style <- "file"
+  # }
 
-  quiet_cli_bullets(
-    bulletize(files, n_show = n_show, style = "file")
+  cli::cli_bullets(
+    bulletize(files, n_show = n_show, style = style)
   )
 
   if (return_list) {
     return(files)
   }
 
-  invisible(NULL)
+  invisible()
 }
