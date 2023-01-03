@@ -2,16 +2,23 @@
 % Please edit documentation in R/cli_yesno.R
 \name{cli_yesno}
 \alias{cli_yesno}
+\alias{check_yes}
 \title{Yes No with Variable Responses using cli}
 \usage{
 cli_yesno(
   message,
   yes = c("Yes", "Definitely", "For sure", "Yup", "Yeah", "I agree", "Absolutely"),
   no = c("No way", "Not now", "Negative", "No", "Nope", "Absolutely not"),
-  n_yes = 1,
+  n_yes = 2,
   n_no = 1,
   call = .envir,
   .envir = parent.frame()
+)
+
+check_yes(
+  prompt = NULL,
+  yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
+  message = "Aborted. A yes is required."
 )
 }
 \arguments{
@@ -36,6 +43,14 @@ respectively not display any call or hard-code a code to display.
 For more information about error calls, see \ifelse{html}{\link[rlang:topic-error-call]{Including function calls in error messages}}{\link[rlang:topic-error-call]{Including function calls in error messages}}.}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
+
+\item{prompt}{For \code{\link[=check_yes]{check_yes()}}, the prompt is always preceded by "? " and
+followed by "(Y/n)".}
+
+\item{yes}{Character strings to allow for confirmation.}
+}
+\value{
+\code{TRUE} if yes response and \code{FALSE} if no response.
 }
 \description{
 Adapted from \code{\link[yesno:yesno]{yesno::yesno()}} and \code{\link[usethis:ui-questions]{usethis::ui_yeah()}} to work with

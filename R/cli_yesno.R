@@ -58,13 +58,13 @@
 #' @param yes,no Character strings with yes and no options.
 #' @param n_yes,n_no Number of yes and no options to provide in user prompt.
 #' @inheritParams cli::cli_abort
+#' @returns `TRUE` if yes response and `FALSE` if no response.
 #' @export
-#' @importFrom rlang is_interactive
 #' @importFrom utils menu
 cli_yesno <- function(message,
                       yes = c("Yes", "Definitely", "For sure", "Yup", "Yeah", "I agree", "Absolutely"),
                       no = c("No way", "Not now", "Negative", "No", "Nope", "Absolutely not"),
-                      n_yes = 1,
+                      n_yes = 2,
                       n_no = 1,
                       call = .envir,
                       .envir = parent.frame()) {
@@ -80,11 +80,30 @@ cli_yesno <- function(message,
   qs <- c(sample(yes, n_yes), sample(no, n_no))
   rand <- sample(length(qs))
 
-  cli_menu(
-    qs[rand],
-    title = message,
-    message = "",
-    ind = TRUE,
-    .envir = .envir
-  ) == which(rand == 1)
+  resp <-
+    cli_menu(
+      qs[rand],
+      title = message,
+      message = "",
+      .envir = .envir
+    )
+
+  tolower(resp) %in% tolower(yes)
+}
+
+#' @name check_yes
+#' @rdname cli_yesno
+#' @param yes Character strings to allow for confirmation.
+#' @param prompt For [check_yes()], the prompt is always preceded by "? " and
+#'   followed by "(Y/n)".
+#' @export
+check_yes <- function(prompt = NULL,
+                      yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
+                      message = "Aborted. A yes is required.") {
+  resp <- cli_ask(paste("?", prompt, "(Y/n)"))
+
+  cli_abort_ifnot(
+    message = message,
+    condition = tolower(resp) %in% tolower(yes)
+  )
 }
