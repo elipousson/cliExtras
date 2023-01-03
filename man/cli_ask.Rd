@@ -4,11 +4,12 @@
 \alias{cli_ask}
 \title{Display a Message then Read a Line from the Terminal}
 \usage{
-cli_ask(prompt = ">>", message = NULL, ..., .envir = parent.frame())
+cli_ask(prompt = "?", message = NULL, ..., .envir = parent.frame())
 }
 \arguments{
 \item{prompt}{Characters to show as user prompt in console following
-displayed message.}
+displayed message. A non-breaking space is always placed after the prompt
+before passing to \code{\link[=readline]{readline()}}.}
 
 \item{message}{Primary prompt to user passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}.}
 
@@ -18,5 +19,8 @@ displayed message.}
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }
 \description{
-This function aborts if the session is not interactive.
+Display a Message then Read a Line from the Terminal
+}
+\seealso{
+\code{\link[=cli_yesno]{cli_yesno()}}
 }
