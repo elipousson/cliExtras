@@ -18,7 +18,7 @@
 #' df <- data.frame("letters" = LETTERS, "numbers" = c(1:26))
 #'
 #' df |>
-#'   cli_pipe_progress_msg("Data has {nrow(data)} rows and {ncol(data)} columns.") |>
+#'   cli_progress_pipe("Data has {nrow(data)} rows and {ncol(data)} columns.") |>
 #'   head(2)
 #' @export
 cli_progress_pipe <- function(data,

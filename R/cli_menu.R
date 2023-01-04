@@ -104,7 +104,7 @@ choose_from_menu <- function(prompt = ">>",
                              choices,
                              exit = "0",
                              ind = FALSE,
-                             .envir = current_frame(),
+                             .envir = current_env(),
                              ...) {
   choice <- cli_ask(prompt = prompt, message = message, .envir = parent.frame(), ...)
 
