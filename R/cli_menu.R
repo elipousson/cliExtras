@@ -11,6 +11,7 @@
 #'   are a named vector or list.
 #' @param sep Separator between choice name and value. Ignored if choices
 #'   are a named vector or list.
+#' @param exit Character to use to exit menu.
 #' @inheritParams cli_bulletize
 #' @inheritParams cli_ask
 #' @inheritParams cli::cli_inform
@@ -108,16 +109,17 @@ choose_from_menu <- function(prompt = ">>",
                              ...) {
   choice <- cli_ask(prompt = prompt, message = message, .envir = parent.frame(), ...)
 
-  choice <- as.character(choice)
+  choice <- as.character(tolower(choice))
 
-  if (choice == exit) {
+  # FIXME: Switch from recursive calls to while structure
+  if (choice == tolower(exit)) {
     return(invisible())
   }
 
   nm <- tolower(names(choices))
 
-  if (tolower(choice) %in% nm) {
-    choice <- which(nm == tolower(choice))
+  if (choice %in% nm) {
+    choice <- which(nm == choice)
 
     if (ind) {
       return(choice)
