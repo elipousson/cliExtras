@@ -8,6 +8,8 @@
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://cran.r-project.org/web/licenses/MIT)
+[![Codecov test
+coverage](https://codecov.io/gh/elipousson/cliExtras/branch/main/graph/badge.svg)](https://app.codecov.io/gh/elipousson/cliExtras?branch=main)
 <!-- badges: end -->
 
 The goal of cliExtras is to extend the [cli](https://cli.r-lib.org/)

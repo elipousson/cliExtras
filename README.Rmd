@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 `r badger::badge_lifecycle("experimental")`
 `r badger::badge_license(color = "brightgreen")`
+[![Codecov test coverage](https://codecov.io/gh/elipousson/cliExtras/branch/main/graph/badge.svg)](https://app.codecov.io/gh/elipousson/cliExtras?branch=main)
 <!-- badges: end -->
 
 The goal of cliExtras is to extend the [cli](https://cli.r-lib.org/) package with a number of helper functions.
