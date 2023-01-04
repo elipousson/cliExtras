@@ -43,9 +43,12 @@ cli_inform_if(..., message = NULL, .envir = parent.frame(), condition = NULL)
 }
 \arguments{
 \item{...}{Any number of R expressions which should each evaluate to a
-logical vector. If ... is named, the names will be passed to as the message
-parameter. If message is provided, any names for the logical expressions
-are ignored.}
+logical vector. If \code{...} is named, the names will be passed to as the
+message parameter. If message is provided, any names for the logical
+expressions are ignored. If only some items from \code{...} are named, the
+missing names are created with \code{\link[rlang:exprs_auto_name]{rlang::exprs_auto_name()}}. If a single list
+is provided, the list is assumed to be a named list of logical values or
+expressions that evaluate to logical values.}
 
 \item{message}{It is formatted via a call to \code{\link[cli:cli_bullets]{cli_bullets()}}.}
 
@@ -69,10 +72,10 @@ For more information about error calls, see \ifelse{html}{\link[rlang:topic-erro
 \code{.trace_bottom}, and to determine the internal package to mention
 in internal errors when \code{.internal} is \code{TRUE}.}
 
-\item{condition}{Logical. For ifnot functions, if \code{FALSE}, signal an error,
-warning, or message. For if functions, signal an error, warning, or message
-if TRUE. Defaults to \code{NULL}. Ignored if multiple parameters are provided to
-...}
+\item{condition}{Logical. For \code{ifnot} style functions, if \code{FALSE}, signal an
+error, warning, or message. For \code{if} style functions, signal an error,
+warning, or message if \code{TRUE}. Defaults to \code{NULL}. Ignored if multiple
+parameters are provided to \code{...}}
 }
 \description{
 Signal an error, warning, or message with a cli formatted message if any
