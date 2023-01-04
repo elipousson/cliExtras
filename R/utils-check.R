@@ -1,6 +1,7 @@
 #' Check if the current session is interactive (and abort if not)
 #'
 #' @noRd
+#' @importFrom rlang is_interactive
 check_interactive <- function(...,
                               message = "User input is required but this session is not interactive.",
                               .envir = parent.frame()) {
