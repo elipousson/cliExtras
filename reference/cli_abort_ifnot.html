@@ -84,9 +84,12 @@ expressions in ... are not all TRUE or are all TRUE</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>...</dt>
 <dd><p>Any number of R expressions which should each evaluate to a
-logical vector. If ... is named, the names will be passed to as the message
-parameter. If message is provided, any names for the logical expressions
-are ignored.</p></dd>
+logical vector. If <code>...</code> is named, the names will be passed to as the
+message parameter. If message is provided, any names for the logical
+expressions are ignored. If only some items from <code>...</code> are named, the
+missing names are created with <code><a href="https://rlang.r-lib.org/reference/exprs_auto_name.html" class="external-link">rlang::exprs_auto_name()</a></code>. If a single list
+is provided, the list is assumed to be a named list of logical values or
+expressions that evaluate to logical values.</p></dd>
 
 
 <dt>message</dt>
@@ -117,10 +120,10 @@ in internal errors when <code>.internal</code> is <code>TRUE</code>.</p></dd>
 
 
 <dt>condition</dt>
-<dd><p>Logical. For ifnot functions, if <code>FALSE</code>, signal an error,
-warning, or message. For if functions, signal an error, warning, or message
-if TRUE. Defaults to <code>NULL</code>. Ignored if multiple parameters are provided to
-...</p></dd>
+<dd><p>Logical. For <code>ifnot</code> style functions, if <code>FALSE</code>, signal an
+error, warning, or message. For <code>if</code> style functions, signal an error,
+warning, or message if <code>TRUE</code>. Defaults to <code>NULL</code>. Ignored if multiple
+parameters are provided to <code>...</code></p></dd>
 
 </dl></div>
 
