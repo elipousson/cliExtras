@@ -38,6 +38,8 @@ are a named vector or list.}
 
 \item{bullet}{Character to use for bullet. Defaults to "".}
 
+\item{exit}{Character to use to exit menu.}
+
 \item{call}{The execution environment of a currently running
 function, e.g. \code{call = caller_env()}. The corresponding function
 call is retrieved and mentioned in error messages as the source
