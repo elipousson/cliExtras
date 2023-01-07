@@ -1,6 +1,7 @@
 #' Display a Message then Read a Line from the Terminal
 #'
-#' @param title Title for menu. Passed to [cli::cli_h2()]
+#' @param title Title for menu. Character vector passed to [cli::cli_h2()] if
+#'   title is length 1 or to [cli::cli_bullets()] if length is greater than 1.
 #' @param message Additional message to display after choices and before prompt.
 #' @param choices Required list of choices. If named, use the names as the
 #'   choice options.
@@ -27,7 +28,7 @@
 #' }
 #' @export
 #' @importFrom rlang check_required is_named set_names
-#' @importFrom cli cli_h2 cat_rule console_width cli
+#' @importFrom cli cli_h2 cli_inform cat_rule console_width cli
 cli_menu <- function(choices,
                      title = NULL,
                      message = "Enter your selection or press {.kbd 0} to exit.",
@@ -37,12 +38,17 @@ cli_menu <- function(choices,
                      bullet = "",
                      exit = "0",
                      ind = FALSE,
+                     id = NULL,
                      call = .envir,
                      .envir = parent.frame()) {
   rlang::check_required(choices)
 
   if (!is.null(title)) {
-    title <- cli::cli_h2(text = title, .envir = .envir)
+    if (length(title) == 1) {
+      title <- cli::cli_h2(text = title, id = id, .envir = .envir)
+    } else if (length(title) > 1) {
+      title <- cli::cli_bullets(title, id = id, .envir = .envir)
+    }
   }
 
   title <- title %||% cli::cat_rule(width = cli::console_width() / 2)
@@ -66,6 +72,7 @@ cli_menu <- function(choices,
           bullet = bullet,
           before = names(choices[i]),
           sep = sep,
+          id = id,
           .envir = current_env()
         )
     }
@@ -75,7 +82,8 @@ cli_menu <- function(choices,
         choices,
         before = names(choices),
         bullet = bullet,
-        sep = sep
+        sep = sep,
+        id = id
       )
   }
 
@@ -107,7 +115,12 @@ choose_from_menu <- function(prompt = ">>",
                              ind = FALSE,
                              .envir = current_env(),
                              ...) {
-  choice <- cli_ask(prompt = prompt, message = message, .envir = parent.frame(), ...)
+  choice <- cli_ask(
+    prompt = prompt,
+    message,
+    .envir = parent.frame(),
+    ...
+  )
 
   choice <- as.character(tolower(choice))
 

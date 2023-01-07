@@ -4,17 +4,21 @@
 \alias{cli_ask}
 \title{Display a Message then Read a Line from the Terminal}
 \usage{
-cli_ask(prompt = "?", message = NULL, ..., .envir = parent.frame())
+cli_ask(prompt = "?", ..., .envir = parent.frame())
 }
 \arguments{
 \item{prompt}{Characters to show as user prompt in console following
 displayed message. A non-breaking space is always placed after the prompt
-before passing to \code{\link[=readline]{readline()}}.}
+before passing to \code{\link[=readline]{readline()}}. Defaults to "?".}
 
-\item{message}{Primary prompt to user passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}.}
-
-\item{...}{Passed to \code{\link[rlang:abort]{rlang::abort()}}, \code{\link[rlang:abort]{rlang::warn()}} or
-\code{\link[rlang:abort]{rlang::inform()}}.}
+\item{...}{
+  Arguments passed on to \code{\link[cli:cli_bullets]{cli::cli_bullets}}
+  \describe{
+    \item{\code{text}}{Character vector of items. See details below on how names
+are interpreted.}
+    \item{\code{id}}{Optional id of the \code{div.bullets} element, can be used in themes.}
+    \item{\code{class}}{Optional additional class(es) for the \code{div.bullets} element.}
+  }}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
 }

@@ -14,6 +14,7 @@ cli_menu(
   bullet = "",
   exit = "0",
   ind = FALSE,
+  id = NULL,
   call = .envir,
   .envir = parent.frame()
 )
@@ -22,7 +23,8 @@ cli_menu(
 \item{choices}{Required list of choices. If named, use the names as the
 choice options.}
 
-\item{title}{Title for menu. Passed to \code{\link[cli:cli_h1]{cli::cli_h2()}}}
+\item{title}{Title for menu. Character vector passed to \code{\link[cli:cli_h1]{cli::cli_h2()}} if
+title is length 1 or to \code{\link[cli:cli_bullets]{cli::cli_bullets()}} if length is greater than 1.}
 
 \item{message}{Additional message to display after choices and before prompt.}
 
@@ -39,6 +41,8 @@ are a named vector or list.}
 \item{bullet}{Character to use for bullet. Defaults to "".}
 
 \item{exit}{Character to use to exit menu.}
+
+\item{id}{Optional id of the \code{div.bullets} element, can be used in themes.}
 
 \item{call}{The execution environment of a currently running
 function, e.g. \code{call = caller_env()}. The corresponding function
