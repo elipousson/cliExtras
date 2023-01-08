@@ -9,10 +9,7 @@ cli_menu(
   title = NULL,
   message = "Enter your selection or press {.kbd 0} to exit.",
   prompt = "Selection:",
-  labels = "arabic",
-  sep = ": ",
-  bullet = "",
-  exit = "0",
+  exit = 0,
   ind = FALSE,
   id = NULL,
   call = .envir,
@@ -20,8 +17,7 @@ cli_menu(
 )
 }
 \arguments{
-\item{choices}{Required list of choices. If named, use the names as the
-choice options.}
+\item{choices}{Required vector or list of choices.}
 
 \item{title}{Title for menu. Character vector passed to \code{\link[cli:cli_h1]{cli::cli_h2()}} if
 title is length 1 or to \code{\link[cli:cli_bullets]{cli::cli_bullets()}} if length is greater than 1.}
@@ -31,16 +27,10 @@ title is length 1 or to \code{\link[cli:cli_bullets]{cli::cli_bullets()}} if len
 \item{prompt}{Characters to show as user prompt in console following
 displayed menu options. Defaults to "Selection:" (matching \code{\link[utils:menu]{utils::menu()}})}
 
-\item{labels}{Style to use for menu choices (from
-\link[isstatic:as_numbered_labels]{isstatic::as_numbered_labels}). Defaults to "arabic". Ignored if choices
-are a named vector or list.}
-
-\item{sep}{Separator between choice name and value. Ignored if choices
-are a named vector or list.}
-
-\item{bullet}{Character to use for bullet. Defaults to "".}
-
 \item{exit}{Character to use to exit menu.}
+
+\item{ind}{If \code{TRUE}, return index position, if \code{FALSE} (default), return
+item from choices.}
 
 \item{id}{Optional id of the \code{div.bullets} element, can be used in themes.}
 
