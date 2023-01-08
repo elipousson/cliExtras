@@ -24,7 +24,7 @@
 #' }
 #' @export
 #' @importFrom rlang check_required set_names
-#' @importFrom cli cli_h2 cli_bullets cat_rule console_width cli_ol cli
+#' @importFrom cli cli_h2 cli_bullets cat_rule console_width cli_ol cli cli_par
 cli_menu <- function(choices,
                      title = NULL,
                      message = "Enter your selection or press {.kbd 0} to exit.",
@@ -82,6 +82,7 @@ cli_menu <- function(choices,
   cli::cli({
     title
     choice_bullets
+    cli::cli_par()
   })
 
   choice <- cli_ask(
