@@ -47,10 +47,7 @@
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  message <span class="op">=</span> <span class="st">"Enter your selection or press {.kbd 0} to exit."</span>,</span>
 <span>  prompt <span class="op">=</span> <span class="st">"Selection:"</span>,</span>
-<span>  labels <span class="op">=</span> <span class="st">"arabic"</span>,</span>
-<span>  sep <span class="op">=</span> <span class="st">": "</span>,</span>
-<span>  bullet <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  exit <span class="op">=</span> <span class="st">"0"</span>,</span>
+<span>  exit <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  ind <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  call <span class="op">=</span> <span class="va">.envir</span>,</span>
@@ -61,8 +58,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>choices</dt>
-<dd><p>Required list of choices. If named, use the names as the
-choice options.</p></dd>
+<dd><p>Required vector or list of choices.</p></dd>
 
 
 <dt>title</dt>
@@ -79,23 +75,13 @@ title is length 1 or to <code><a href="https://cli.r-lib.org/reference/cli_bulle
 displayed menu options. Defaults to "Selection:" (matching <code><a href="https://rdrr.io/r/utils/menu.html" class="external-link">utils::menu()</a></code>)</p></dd>
 
 
-<dt>labels</dt>
-<dd><p>Style to use for menu choices (from
-isstatic::as_numbered_labels). Defaults to "arabic". Ignored if choices
-are a named vector or list.</p></dd>
-
-
-<dt>sep</dt>
-<dd><p>Separator between choice name and value. Ignored if choices
-are a named vector or list.</p></dd>
-
-
-<dt>bullet</dt>
-<dd><p>Character to use for bullet. Defaults to "".</p></dd>
-
-
 <dt>exit</dt>
 <dd><p>Character to use to exit menu.</p></dd>
+
+
+<dt>ind</dt>
+<dd><p>If <code>TRUE</code>, return index position, if <code>FALSE</code> (default), return
+item from choices.</p></dd>
 
 
 <dt>id</dt>
