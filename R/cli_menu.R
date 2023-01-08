@@ -37,16 +37,16 @@ cli_menu <- function(choices,
   rlang::check_required(choices)
 
   if (!is.null(title)) {
-    if (length(title) == 1) {
+    if ((length(title) == 1) && !rlang::is_named(title)) {
       title <- cli::cli_h2(text = title, id = id, .envir = .envir)
-    } else if (length(title) > 1) {
+    } else {
       title <- cli::cli_bullets(title, id = id, .envir = .envir)
     }
   }
 
   title <- title %||% cli::cat_rule(
     width = as.integer(cli::console_width() / 2)
-    )
+  )
 
   choices <- rlang::set_names(choices, seq_along(choices))
 
@@ -90,7 +90,7 @@ cli_menu <- function(choices,
     .envir = .envir
   )
 
-  while(TRUE) {
+  while (TRUE) {
     if (choice == as.integer(exit)) {
       return(invisible())
     }
