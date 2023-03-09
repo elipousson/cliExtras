@@ -7,7 +7,7 @@
 \usage{
 cli_vec_last(x, style = list(), vec_last = " or ")
 
-cls_vec(x, vec_last = "or")
+cls_vec(x, vec_last = " or ")
 }
 \arguments{
 \item{x}{Vector that will be collapsed by cli.}

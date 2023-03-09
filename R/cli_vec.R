@@ -19,7 +19,7 @@ cli_vec_last <- function(x, style = list(), vec_last = " or ") {
 #' @name cls_vec
 #' @keywords internal
 #' @export
-cls_vec <- function(x, vec_last = "or") {
+cls_vec <- function(x, vec_last = " or ") {
   cli_vec_last(
     x,
     style = list(
