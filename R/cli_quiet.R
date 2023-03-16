@@ -11,9 +11,11 @@ cli_quiet <- function(quiet = FALSE) {
 
 #' @name set_cli_quiet
 #' @rdname cli_quiet
+#' @param msg If `TRUE`, [set_cli_quiet()] displays a message confirming the
+#'   option changes. If `FALSE`, the function does not display a message.
 #' @export
 #' @importFrom cli cli_rule cli_inform cli_end
-set_cli_quiet <- function(quiet = FALSE) {
+set_cli_quiet <- function(quiet = FALSE, msg = !quiet) {
   handler_label <- "`NULL`"
   quiet_label <- "allow"
   default_handler <- NULL
@@ -29,17 +31,19 @@ set_cli_quiet <- function(quiet = FALSE) {
     options("cliExtras.quiet" = quiet)
   }
 
-  cli::cli_rule("Updating options", id = "set.cli.quiet")
-  cli::cli_inform(
-    c(
-      "v" = "Setting {.field cli.default_handler} to {handler_label} to
+  if (isTRUE(msg)) {
+    cli::cli_rule("Updating options", id = "set.cli.quiet")
+    cli::cli_inform(
+      c(
+        "v" = "Setting {.field cli.default_handler} to {handler_label} to
       {quiet_label} {.pkg cli} messages.",
       "v" = "Setting {.field cliExtras.quiet} to {.code {quiet}} to
-      {quiet_label} warnings and info messages for {.pkg cliExtras}."
-    ),
-    id = "set.cli.quiet"
-  )
-  cli::cli_end(id = "set.cli.quiet")
+      {quiet_label} {.pkg cliExtras} warnings and info messages."
+      ),
+      id = "set.cli.quiet"
+    )
+    cli::cli_end(id = "set.cli.quiet")
+  }
 
   options("cli.default_handler" = default_handler)
   options("cliExtras.quiet" = quiet)

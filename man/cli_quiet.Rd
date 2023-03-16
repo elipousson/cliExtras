@@ -7,11 +7,14 @@
 \usage{
 cli_quiet(quiet = FALSE)
 
-set_cli_quiet(quiet = FALSE)
+set_cli_quiet(quiet = FALSE, msg = !quiet)
 }
 \arguments{
 \item{quiet}{Option value to set or default value if option is not set.
 Defaults to \code{FALSE}.}
+
+\item{msg}{If \code{TRUE}, \code{\link[=set_cli_quiet]{set_cli_quiet()}} displays a message confirming the
+option changes. If \code{FALSE}, the function does not display a message.}
 }
 \description{
 \code{\link[=cli_quiet]{cli_quiet()}} gets the cliExtras.quiet option and \code{\link[=set_cli_quiet]{set_cli_quiet()}} sets the
