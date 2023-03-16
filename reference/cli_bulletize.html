@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cliExtras</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,9 +87,9 @@ not displayed. Defaults to 2.</p></dd>
 <dd><p>A cli style name, e.g. code, val, file, url</p></dd>
 
 
-<dt>sep</dt>
-<dd><p>Separator string to insert between item name and item if items is
-a named list or vector. Defaults to <code>NULL</code>.</p></dd>
+<dt>sep, before, after</dt>
+<dd><p>Additional characters or character vectors applied
+using <code>paste0(before, sep, out, after)</code>. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt>id</dt>

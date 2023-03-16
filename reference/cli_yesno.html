@@ -14,7 +14,7 @@ aborts if the session is not interactive."><!-- mathjax --><script src="https://
     
     <a class="navbar-brand me-2" href="../index.html">cliExtras</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,9 @@ aborts if the session is not interactive.</p>
 <span><span class="fu">check_yes</span><span class="op">(</span></span>
 <span>  prompt <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  yes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Y"</span>, <span class="st">"Yes"</span>, <span class="st">"Yup"</span>, <span class="st">"Yep"</span>, <span class="st">"Yeah"</span><span class="op">)</span>,</span>
-<span>  message <span class="op">=</span> <span class="st">"Aborted. A yes is required."</span></span>
+<span>  message <span class="op">=</span> <span class="st">"Aborted. A yes is required."</span>,</span>
+<span>  .envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  call <span class="op">=</span> <span class="va">.envir</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -101,11 +103,7 @@ respectively not display any call or hard-code a code to display.</p>
 
 <dt>prompt</dt>
 <dd><p>For <code>check_yes()</code>, the prompt is always preceded by "? " and
-followed by "(Y/n)".</p></dd>
-
-
-<dt>yes</dt>
-<dd><p>Character strings to allow for confirmation.</p></dd>
+followed by "(Y/n)" and padded with non-breaking spaces on both sides.</p></dd>
 
 </dl></div>
     <div class="section level2">
