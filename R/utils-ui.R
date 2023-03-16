@@ -8,7 +8,6 @@
 #' - [bracketize()] pastes open and close brackets around a vector.
 #' - [stylize()] appends a style prefix, e.g. "`{.val value}`" to a vector.
 #' - [bulletize()] turns a vector into a neatly abbreviated bullet list.
-#' - [set_bullets()] assigns bullets as the names for a vector.
 #'
 #' [bulletize()] is adapted from the gargle package (see
 #' [`utils-ui.R`](https://github.com/r-lib/gargle/blob/4021167fd2f7aca7194027bf73a5a06296ca03dc/R/utils-ui.R)).

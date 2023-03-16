@@ -64,7 +64,6 @@ may be removed as my understanding of the cli package improves.
 \item \code{\link[=bracketize]{bracketize()}} pastes open and close brackets around a vector.
 \item \code{\link[=stylize]{stylize()}} appends a style prefix, e.g. "\verb{\{.val value\}}" to a vector.
 \item \code{\link[=bulletize]{bulletize()}} turns a vector into a neatly abbreviated bullet list.
-\item \code{\link[=set_bullets]{set_bullets()}} assigns bullets as the names for a vector.
 }
 
 \code{\link[=bulletize]{bulletize()}} is adapted from the gargle package (see

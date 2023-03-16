@@ -34,8 +34,8 @@ not displayed. Defaults to 2.}
 
 \item{style}{A cli style name, e.g. code, val, file, url}
 
-\item{sep}{Separator string to insert between item name and item if items is
-a named list or vector. Defaults to \code{NULL}.}
+\item{sep, before, after}{Additional characters or character vectors applied
+using \code{paste0(before, sep, out, after)}. Defaults to \code{NULL}.}
 
 \item{id}{Optional id of the \code{div.bullets} element, can be used in themes.}
 

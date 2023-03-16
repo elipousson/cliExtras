@@ -2,8 +2,8 @@
 #'
 #' @param items A named vector or list to use in creating a bulletted list with
 #'   [cli::cli_bullets()].
-#' @param sep Separator string to insert between item name and item if items is
-#'   a named list or vector. Defaults to `NULL`.
+#' @param sep,before,after Additional characters or character vectors applied
+#'   using `paste0(before, sep, out, after)`. Defaults to `NULL`.
 #' @inheritParams bulletize
 #' @inheritParams cli::cli_bullets
 #' @rdname cli_bulletize
