@@ -93,17 +93,20 @@ cli_yesno <- function(message,
 
 #' @name check_yes
 #' @rdname cli_yesno
-#' @param yes Character strings to allow for confirmation.
 #' @param prompt For [check_yes()], the prompt is always preceded by "? " and
-#'   followed by "(Y/n)".
+#'   followed by "(Y/n)" and padded with non-breaking spaces on both sides.
 #' @export
 check_yes <- function(prompt = NULL,
                       yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
-                      message = "Aborted. A yes is required.") {
-  resp <- cli_ask(paste("?", prompt, "(Y/n)"))
+                      message = "Aborted. A yes is required.",
+                      .envir = parent.frame(),
+                      call = .envir) {
+  resp <- cli_ask(paste0("?\u00a0", prompt, "\u00a0(Y/n)"), .envir = .envir)
 
   cli_abort_ifnot(
     message = message,
-    condition = tolower(resp) %in% tolower(yes)
+    condition = tolower(resp) %in% tolower(yes),
+    .envir = .envir,
+    call = call
   )
 }

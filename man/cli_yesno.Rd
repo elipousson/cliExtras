@@ -18,7 +18,9 @@ cli_yesno(
 check_yes(
   prompt = NULL,
   yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
-  message = "Aborted. A yes is required."
+  message = "Aborted. A yes is required.",
+  .envir = parent.frame(),
+  call = .envir
 )
 }
 \arguments{
@@ -45,9 +47,7 @@ For more information about error calls, see \ifelse{html}{\link[rlang:topic-erro
 \item{.envir}{Environment to evaluate the glue expressions in.}
 
 \item{prompt}{For \code{\link[=check_yes]{check_yes()}}, the prompt is always preceded by "? " and
-followed by "(Y/n)".}
-
-\item{yes}{Character strings to allow for confirmation.}
+followed by "(Y/n)" and padded with non-breaking spaces on both sides.}
 }
 \value{
 \code{TRUE} if yes response and \code{FALSE} if no response.
