@@ -199,7 +199,12 @@ cli_conditional_message <- function(...,
     params[[1]] <- condition
   }
 
-  params[[1]] <- set_ifnot(params[[1]], not, call)
+  params[[1]] <- set_ifnot(
+    x = params[[1]],
+    message = "{.arg condition} or conditions passed to {.arg ...}
+    must be {.cls logical}, not {.cls {class(params[[1]])}}.",
+    not = not, call = call, .envir = current_env()
+    )
 
   if (!rlang::is_true(params[[1]])) {
     return(invisible())
@@ -230,7 +235,7 @@ set_params <- function(..., not = FALSE) {
   params <- rlang::list2(...)
 
   if (rlang::is_empty(params)) {
-    return(list())
+    return(params)
   }
 
   list_params <-
@@ -260,17 +265,17 @@ set_params <- function(..., not = FALSE) {
   rlang::set_names(params, replace_nm)
 }
 
-
 #' @noRd
-#' @importFrom rlang is_logical is_true
+#' @importFrom rlang is_logical is_true caller_arg current_env
 #' @importFrom cli cli_abort
 set_ifnot <- function(x,
+                      arg = caller_arg(x),
+                      message = "{.arg {arg}} must be {.cls logical}, not {.cls {class(x)}}.",
                       not = FALSE,
-                      call = parent.frame()) {
+                      call = parent.frame(),
+                      .envir = current_env()) {
   if (!rlang::is_logical(x)) {
-    cli::cli_abort("{.arg condition} or {.arg ...} parameters
-                   must be {.cls logical}, not {.cls {class(x)}}.",
-                   call = call)
+    cli::cli_abort(message, .envir = .envir, call = call)
   }
 
   if (rlang::is_true(not)) {
