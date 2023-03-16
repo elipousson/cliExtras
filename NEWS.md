@@ -1,4 +1,7 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+# cliExtras 0.1.0.9001 (2023-03-16)
+
+* Update `check_yes()` to pass .envir and call parameters and to wrap prompt with non-breaking spaces.
+* Add new `cli_alert_ifnot()`, `cli_alert_if()`, and related functions.
 
 # cliExtras 0.1.0.9000 (2023-03-09)
 
