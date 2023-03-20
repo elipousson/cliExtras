@@ -26,11 +26,6 @@ set_cli_quiet <- function(quiet = FALSE, msg = !quiet) {
     default_handler <- suppressMessages
   }
 
-  if (cli_quiet() && !quiet) {
-    options("cli.default_handler" = default_handler)
-    options("cliExtras.quiet" = quiet)
-  }
-
   if (isTRUE(msg)) {
     cli::cli_rule("Updating options", id = "set.cli.quiet")
     cli::cli_inform(
