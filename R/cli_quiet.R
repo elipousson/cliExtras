@@ -1,18 +1,54 @@
-#' Helper functions to get or set the cliExtras.quiet option
+#' Use rlang to set cli.default_handler to suppressMessages as a local or
+#' permanent option
 #'
-#' [cli_quiet()] gets the cliExtras.quiet option and [set_cli_quiet()] sets the
-#' option.
-#' @param quiet Option value to set or default value if option is not set.
-#'   Defaults to `FALSE`.
+#' [cli_quiet()] is a helper to enable a quiet option in other functions.
+#'
+#' @param quiet If `FALSE`, leave cli.default_handler option unchanged. If
+#'   `TRUE`, set cli.default_handler to `suppressMessages` temporaily with
+#'   [rlang::local_options()] or permanently with [rlang::push_options()].
+#' @param push If `TRUE`, set cli.default_handler option with
+#'   [rlang::push_options()].
+#' @inheritParams rlang::local_options
+#' @examples
+#' test_fn <- function(quiet = FALSE) {
+#'   cli_quiet(quiet = quiet)
+#'   cli::cli_alert_info(
+#'     "{.arg quiet} is {.val {quiet}}"
+#'   )
+#' }
+#'
+#' options("cli.default_handler" = NULL)
+#'
+#' test_fn()
+#'
+#' test_fn(quiet = TRUE)
+#'
 #' @export
-cli_quiet <- function(quiet = FALSE) {
-  getOption("cliExtras.quiet", default = quiet)
+#' @importFrom rlang caller_env is_false is_true push_options local_options
+cli_quiet <- function(quiet = FALSE, push = FALSE, .frame = caller_env()) {
+  if (rlang::is_false(quiet)) {
+    return(invisible(NULL))
+  }
+
+  if (rlang::is_true(push)) {
+    return(rlang::push_options("cli.default_handler" = suppressMessages))
+  }
+
+  rlang::local_options("cli.default_handler" = suppressMessages, .frame = .frame)
 }
 
+#' Set the cli.default_handler and cliExtras.quiet options
+#'
+#' @description
+#' `r lifecycle::badge('deprecated')`
+#'
 #' @name set_cli_quiet
-#' @rdname cli_quiet
+#' @param quiet If `TRUE` set the cli.default_handler option to
+#'   `suppressMessages` and cliExtras.quiet option to `TRUE`. Defaults to
+#'   `FALSE`.
 #' @param msg If `TRUE`, [set_cli_quiet()] displays a message confirming the
 #'   option changes. If `FALSE`, the function does not display a message.
+#'   Defaults to `!quiet`
 #' @export
 #' @importFrom cli cli_rule cli_inform cli_end
 set_cli_quiet <- function(quiet = FALSE, msg = !quiet) {
@@ -32,7 +68,7 @@ set_cli_quiet <- function(quiet = FALSE, msg = !quiet) {
       c(
         "v" = "Setting {.field cli.default_handler} to {handler_label} to
       {quiet_label} {.pkg cli} messages.",
-      "v" = "Setting {.field cliExtras.quiet} to {.code {quiet}} to
+        "v" = "Setting {.field cliExtras.quiet} to {.code {quiet}} to
       {quiet_label} {.pkg cliExtras} warnings and info messages."
       ),
       id = "set.cli.quiet"
@@ -58,7 +94,7 @@ set_cli_quiet <- function(quiet = FALSE, msg = !quiet) {
 #' @importFrom rlang is_true
 #' @importFrom cli cli_inform
 quiet_cli_inform <- function(..., .envir = parent.frame()) {
-  quiet <- cli_quiet()
+  quiet <- getOption("cliExtras.quiet", default = FALSE)
   if (!is.na(quiet) && rlang::is_true(quiet)) {
     return(invisible())
   }
