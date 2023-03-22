@@ -64,6 +64,10 @@ cli message. Defaults to \code{FALSE}.}
 \description{
 Display a list of files as a list of items
 }
+\examples{
+cli_list_files(system.file("R", package = "cliExtras"), n_show = 5)
+
+}
 \seealso{
 \code{\link[cli:cli_bullets]{cli::cli_bullets()}}
 }

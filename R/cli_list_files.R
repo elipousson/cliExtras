@@ -12,6 +12,9 @@
 #' @param return_list If `TRUE`, return the list of files after displaying the
 #'   cli message. Defaults to `FALSE`.
 #' @inheritDotParams base::list.files
+#' @examples
+#' cli_list_files(system.file("R", package = "cliExtras"), n_show = 5)
+#'
 #' @seealso
 #'  [cli::cli_bullets()]
 #' @name cli_list_files
