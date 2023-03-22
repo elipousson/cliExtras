@@ -37,6 +37,9 @@
     <loc>https://elipousson.github.io/cliExtras/reference/cli_helpers.html</loc>
   </url>
   <url>
+    <loc>https://elipousson.github.io/cliExtras/reference/cli_if.html</loc>
+  </url>
+  <url>
     <loc>https://elipousson.github.io/cliExtras/reference/cli_list_files.html</loc>
   </url>
   <url>
@@ -68,5 +71,8 @@
   </url>
   <url>
     <loc>https://elipousson.github.io/cliExtras/reference/register_cli_format.html</loc>
+  </url>
+  <url>
+    <loc>https://elipousson.github.io/cliExtras/reference/set_cli_quiet.html</loc>
   </url>
 </urlset>

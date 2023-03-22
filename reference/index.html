@@ -27,7 +27,13 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/elipousson/cliExtras/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -76,6 +82,11 @@ expressions in ... are not all TRUE or are all TRUE</dd>
         <dd>Assorted helper functions to format text and vectors for cli messages</dd>
       </dl><dl><dt>
           
+          <code><a href="cli_if.html">cli_if()</a></code> <code><a href="cli_if.html">cli_ifnot()</a></code> 
+        </dt>
+        <dd>Execute a cli function if a predicate function returns TRUE</dd>
+      </dl><dl><dt>
+          
           <code><a href="cli_list_files.html">cli_list_files()</a></code> 
         </dt>
         <dd>Display a list of files as a list of items</dd>
@@ -96,9 +107,10 @@ expressions in ... are not all TRUE or are all TRUE</dd>
         <dd>Simplified cli progress message for combining with a pipe</dd>
       </dl><dl><dt>
           
-          <code><a href="cli_quiet.html">cli_quiet()</a></code> <code><a href="cli_quiet.html">set_cli_quiet()</a></code> 
+          <code><a href="cli_quiet.html">cli_quiet()</a></code> 
         </dt>
-        <dd>Helper functions to get or set the cliExtras.quiet option</dd>
+        <dd>Use rlang to set cli.default_handler to suppressMessages as a local or
+permanent option</dd>
       </dl><dl><dt>
           
           <code><a href="cli_ul_items.html">cli_ul_items()</a></code> 
@@ -119,6 +131,11 @@ expressions in ... are not all TRUE or are all TRUE</dd>
           <code><a href="register_cli_format.html">register_cli_format()</a></code> 
         </dt>
         <dd>Register a custom cli format method with registerS3method</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_cli_quiet.html">set_cli_quiet()</a></code> 
+        </dt>
+        <dd>Set the cli.default_handler and cliExtras.quiet options</dd>
       </dl></div>
   </main></div>
 
