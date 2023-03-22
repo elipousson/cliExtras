@@ -29,9 +29,9 @@
 #' @importFrom cli cli_alert cli_abort
 cli_if <- function(x = NULL,
                    ...,
-                   .predicate = rlang::is_true,
+                   .predicate = is_true,
                    .fn = NULL,
-                   .default = cli::cli_alert,
+                   .default = cli_alert,
                    call = caller_env()) {
   check <- rlang::try_fetch(
     .predicate(x),
@@ -77,10 +77,10 @@ cli_if <- function(x = NULL,
 #' @importFrom cli cli_alert
 cli_ifnot <- function(x = NULL,
                       ...,
-                      .predicate = rlang::is_false,
+                      .predicate = is_false,
                       .fn = NULL,
-                      .default = cli::cli_alert,
-                      call = parent.frame()) {
+                      .default = cli_alert,
+                      call = caller_env()) {
   cli_if(
     x = x,
     ...,

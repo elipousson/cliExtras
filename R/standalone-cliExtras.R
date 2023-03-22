@@ -8,6 +8,9 @@
 #
 # ## Changelog
 #
+# 2023-03-22:
+# * Added `cli_ifnot()`
+#
 # 2023-03-21:
 # * Added `cli_quiet()` and `cli_if()`
 #
@@ -68,5 +71,21 @@ cli_if <- function(x = NULL,
       }
     )
   }
+}
+
+cli_ifnot <- function(x = NULL,
+                      ...,
+                      .predicate = rlang::is_false,
+                      .fn = NULL,
+                      .default = cli::cli_alert,
+                      call = rlang::caller_env()) {
+  cli_if(
+    x = x,
+    ...,
+    .predicate = .predicate,
+    .fn = .fn,
+    .default = .default,
+    call = call
+  )
 }
 # nocov end

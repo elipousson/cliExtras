@@ -20,7 +20,7 @@ cli_ifnot(
   .predicate = rlang::is_false,
   .fn = NULL,
   .default = cli::cli_alert,
-  call = parent.frame()
+  call = rlang::caller_env()
 )
 }
 \arguments{
