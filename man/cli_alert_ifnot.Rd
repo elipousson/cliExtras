@@ -16,7 +16,7 @@
 cli_alert_ifnot(
   text = NULL,
   condition = NULL,
-  fn = cli::cli_alert,
+  .fn = cli::cli_alert,
   id = NULL,
   class = NULL,
   wrap = TRUE,
@@ -35,7 +35,7 @@ cli_warning_ifnot(text = NULL, condition = NULL, ..., .envir = parent.frame())
 cli_alert_if(
   text = NULL,
   condition = NULL,
-  fn = cli::cli_alert,
+  .fn = cli::cli_alert,
   id = NULL,
   class = NULL,
   wrap = TRUE,
@@ -57,7 +57,7 @@ cli_warning_if(text = NULL, condition = NULL, ..., .envir = parent.frame())
 \item{condition}{If \code{TRUE}, display alert for "if" functions. If \code{FALSE},
 display alert for "ifnot" functions.}
 
-\item{fn}{cli function to use for alert. Defaults to \code{cli::cli_alert}.
+\item{.fn}{cli function to use for alert. Defaults to \code{cli::cli_alert}.
 Supported options also include "danger", "info", "success", and "warning".}
 
 \item{id}{Id of the alert element. Can be used in themes.}
@@ -92,5 +92,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[cli]{cli_alert}}
+\code{\link[cli:cli_alert]{cli::cli_alert()}}
 }

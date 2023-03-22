@@ -1,44 +1,15 @@
-#' Display an alert message if condition is met
+#' Set and validate function for CLI conditional alerts
 #'
 #' @noRd
 #' @keywords internal
-#' @importFrom rlang check_required is_logical is_empty is_character is_true
-#'   is_named
-cli_conditional_alert <- function(text,
-                                  condition = NULL,
-                                  fn,
-                                  not = FALSE,
-                                  id = NULL,
-                                  class = NULL,
-                                  wrap = TRUE,
-                                  .envir = parent.frame(),
-                                  call = parent.frame()) {
-  fn <- set_cli_alert_fn(fn, call)
+#' @importFrom rlang check_required is_string is_function
+#' @importFrom cli cli_alert_danger cli_alert_info cli_alert_success
+#'   cli_alert_warning cli_abort
+set_cli_alert_fn <- function(.fn, call = parent.frame()) {
+  rlang::check_required(.fn, call = call)
 
-  condition <- set_ifnot(x = condition, not = not, call = call)
-
-  if (!rlang::is_true(condition)) {
-    return(invisible())
-  }
-
-  fn(
-    text = text,
-    id = id,
-    class = class,
-    wrap = wrap,
-    .envir = .envir
-  )
-}
-
-#' Set and validate function for cli_conditional_alert
-#'
-#' @noRd
-#' @keywords internal
-set_cli_alert_fn <- function(fn, call = parent.frame()) {
-  rlang::check_required(fn, call = call)
-
-  if (is.character(fn)) {
-    fn <- switch(fn,
+  if (rlang::is_string(.fn)) {
+    .fn <- switch(.fn,
       "danger" = cli::cli_alert_danger,
       "info" = cli::cli_alert_info,
       "success" = cli::cli_alert_success,
@@ -46,15 +17,15 @@ set_cli_alert_fn <- function(fn, call = parent.frame()) {
     )
   }
 
-  if (!rlang::is_function(fn)) {
+  if (!rlang::is_function(.fn)) {
     cli::cli_abort(
-      '{.arg fn} must be a {.pkg cli} function or one of these strings:
+      '{.arg .fn} must be a {.pkg cli} function or one of these strings:
       {c("danger", "info", "success", "warning")}',
       call = call
     )
   }
 
-  fn
+  .fn
 }
 
 #' CLI conditional alerts
@@ -66,7 +37,7 @@ set_cli_alert_fn <- function(fn, call = parent.frame()) {
 #' @inheritParams cli::cli_alert
 #' @param condition If `TRUE`, display alert for "if" functions. If `FALSE`,
 #'   display alert for "ifnot" functions.
-#' @param fn cli function to use for alert. Defaults to `cli::cli_alert`.
+#' @param .fn cli function to use for alert. Defaults to `cli::cli_alert`.
 #'   Supported options also include "danger", "info", "success", and "warning".
 #' @param ... Additional parameters passed to cli_alert_if or cli_alert_ifnot by
 #'   functions like `cli_info_ifnot()`.
@@ -85,27 +56,28 @@ set_cli_alert_fn <- function(fn, call = parent.frame()) {
 #' }
 #' }
 #' @seealso
-#'  \code{\link[cli]{cli_alert}}
+#'  [cli::cli_alert()]
 #' @rdname cli_alert_ifnot
 #' @export
 #' @importFrom cli cli_alert
 cli_alert_ifnot <- function(text = NULL,
                             condition = NULL,
-                            fn = cli::cli_alert,
+                            .fn = cli::cli_alert,
                             id = NULL,
                             class = NULL,
                             wrap = TRUE,
                             .envir = parent.frame(),
                             call = parent.frame()) {
-  cli_conditional_alert(
+  cli_if(
     text = text,
-    condition = condition,
-    fn = fn,
+    x = condition,
+    .fn = set_cli_alert_fn(.fn, call),
     .envir = .envir,
     id = id,
     class = class,
     call = call,
-    not = TRUE
+    wrap = wrap,
+    .predicate = rlang::is_false
   )
 }
 
@@ -117,7 +89,7 @@ cli_danger_ifnot <- function(text = NULL, condition = NULL, ..., .envir = parent
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "danger"
+    .envir = .envir, .fn = "danger"
   )
 }
 
@@ -129,7 +101,7 @@ cli_info_ifnot <- function(text = NULL, condition = NULL, ..., .envir = parent.f
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "info"
+    .envir = .envir, .fn = "info"
   )
 }
 
@@ -141,7 +113,7 @@ cli_success_ifnot <- function(text = NULL, condition = NULL, ..., .envir = paren
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "success"
+    .envir = .envir, .fn = "success"
   )
 }
 
@@ -153,7 +125,7 @@ cli_warning_ifnot <- function(text = NULL, condition = NULL, ..., .envir = paren
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "warning"
+    .envir = .envir, .fn = "warning"
   )
 }
 
@@ -162,21 +134,22 @@ cli_warning_ifnot <- function(text = NULL, condition = NULL, ..., .envir = paren
 #' @export
 cli_alert_if <- function(text = NULL,
                          condition = NULL,
-                         fn = cli::cli_alert,
+                         .fn = cli::cli_alert,
                          id = NULL,
                          class = NULL,
                          wrap = TRUE,
                          .envir = parent.frame(),
                          call = parent.frame()) {
-  cli_conditional_alert(
+  cli_if(
     text = text,
-    condition = condition,
-    fn = fn,
+    x = condition,
+    .fn = set_cli_alert_fn(.fn, call),
     .envir = .envir,
     id = id,
     class = class,
     call = call,
-    not = FALSE
+    wrap = wrap,
+    .predicate = rlang::is_true
   )
 }
 
@@ -188,7 +161,7 @@ cli_danger_if <- function(text = NULL, condition = NULL, ..., .envir = parent.fr
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "danger"
+    .envir = .envir, .fn = "danger"
   )
 }
 
@@ -200,7 +173,7 @@ cli_info_if <- function(text = NULL, condition = NULL, ..., .envir = parent.fram
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "info"
+    .envir = .envir, .fn = "info"
   )
 }
 
@@ -212,7 +185,7 @@ cli_success_if <- function(text = NULL, condition = NULL, ..., .envir = parent.f
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "success"
+    .envir = .envir, .fn = "success"
   )
 }
 
@@ -224,6 +197,6 @@ cli_warning_if <- function(text = NULL, condition = NULL, ..., .envir = parent.f
     text = text,
     condition = condition,
     ...,
-    .envir = .envir, fn = "warning"
+    .envir = .envir, .fn = "warning"
   )
 }
