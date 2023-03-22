@@ -11,7 +11,9 @@ Extends the cli package with user response prompts and stopifnot equivalents.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://github.com/elipousson/cliExtras}
   \item \url{https://elipousson.github.io/cliExtras/}
+  \item Report bugs at \url{https://github.com/elipousson/cliExtras/issues}
 }
 
 }

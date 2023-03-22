@@ -9,7 +9,9 @@ Maintainer: Eli Pousson <eli.pousson@gmail.com>
 Description: Extends the cli package with user response prompts and
     stopifnot equivalents.
 License: MIT + file LICENSE
-URL: https://elipousson.github.io/cliExtras/
+URL: https://github.com/elipousson/cliExtras,
+    https://elipousson.github.io/cliExtras/
+BugReports: https://github.com/elipousson/cliExtras/issues
 Imports: 
     cli,
     lifecycle,
