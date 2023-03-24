@@ -33,18 +33,18 @@ cli_if <- function(x = NULL,
                    .fn = NULL,
                    .default = cli_alert,
                    call = caller_env()) {
-  check <- rlang::try_fetch(
+  check <- try_fetch(
     .predicate(x),
     error = function(cnd) cnd
   )
 
-  if (!rlang::is_bool(check)) {
+  if (!is_bool(check)) {
     parent <- NULL
-    if (rlang::is_error(check)) {
+    if (is_error(check)) {
       parent <- check
     }
 
-    cli::cli_abort(
+    cli_abort(
       "{.fn {.predicate}} must return a {.cls logical} object,
       not {.obj_type_friendly {check}}.",
       call = call,
@@ -52,11 +52,11 @@ cli_if <- function(x = NULL,
     )
   }
 
-  if (rlang::is_true(check)) {
+  if (is_true(check)) {
     .fn <- .fn %||% .default
-    fn_call <- rlang::call2(.fn, ...)
-    if (rlang::has_name(rlang::call_args_names(fn_call), "call")) {
-      fn_call <- rlang::call_modify(fn_call, call = call, .homonyms = "last")
+    fn_call <- call2(.fn, ...)
+    if (has_name(call_args_names(fn_call), "call")) {
+      fn_call <- call_modify(fn_call, call = call, .homonyms = "last")
     }
     eval(fn_call)
   }

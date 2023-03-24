@@ -172,7 +172,7 @@ cli_if_msg <- function(...,
   }
 
   if (rlang::is_logical(condition)) {
-    if (!rlang::is_empty(params) && rlang::is_character(params, n = 1)) {
+    if (!rlang::is_empty(params) && rlang::is_character(params[[1]], n = 1)) {
       message <- params[[1]]
     }
 
@@ -186,9 +186,13 @@ cli_if_msg <- function(...,
     not = not, call = call, .envir = current_env()
   )
 
+  if (rlang::is_named(params)) {
+    message <- message %||% names(params)[1]
+  }
+
   cli_if(
     x = params[[1]],
-    message = message %||% names(params)[1],
+    message = message,
     .fn = .fn,
     call = call,
     .envir = .envir,
@@ -219,11 +223,11 @@ set_params <- function(..., not = FALSE) {
     return(params[[1]])
   }
 
-  if (rlang::is_named2(params)) {
-    return(params)
-  }
+  empty_nm <- names(params) == ""
 
-  empty_nm <- rlang::has_name(params, "")
+  if (identical(empty_nm, logical(0))) {
+    empty_nm <- TRUE
+  }
 
   replace_nm <- names(rlang::exprs_auto_name(rlang::exprs(...)))
 
