@@ -11,6 +11,7 @@ cli_list_files(
   text = NULL,
   bullet = "*",
   n_show = 10,
+  show_full = FALSE,
   include_dirs = TRUE,
   return_list = FALSE,
   .envir = current_env(),
@@ -26,8 +27,9 @@ cli_list_files(
     non-existent).}
 
 \item{files}{List to file names to display. Ignored if path is provided. If
-path is a vector of existing files, path is used as files and path is
-treated as \code{NULL}.}
+path is a vector of existing files, path is used as files. If files share a
+single directory, path is set to that directory, otherwise path is set to
+\code{NULL}.}
 
 \item{pattern}{an optional \link[base]{regular expression}.  Only file names
     which match the regular expression will be returned.}
@@ -41,6 +43,10 @@ provided).}
 \item{n_show}{Number of file names to show in list. The remaining number of
 files n_show are noted at the end of the list but the file names are not
 displayed. Defaults to 10.}
+
+\item{show_full}{If \code{TRUE}, always show the full file path available. If
+\code{FALSE}, show just the base name. Set to \code{FALSE} automatically if path is a
+vector of file names is a single directory.}
 
 \item{include_dirs}{If \code{TRUE}, include directories in listed files. Defaults
 to \code{FALSE}. Passed to the include.dirs parameter of \code{\link[base:list.files]{base::list.files()}} if

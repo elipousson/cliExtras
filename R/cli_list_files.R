@@ -2,8 +2,9 @@
 #'
 #' @inheritParams base::list.files
 #' @param files List to file names to display. Ignored if path is provided. If
-#'   path is a vector of existing files, path is used as files and path is
-#'   treated as `NULL`.
+#'   path is a vector of existing files, path is used as files. If files share a
+#'   single directory, path is set to that directory, otherwise path is set to
+#'   `NULL`.
 #' @param text Passed to [cli::cli_alert_info()]. If `NULL` (default), text
 #'   appears reporting the number of files/folders found at the path (if path
 #'   provided).
@@ -14,6 +15,9 @@
 #' @param n_show Number of file names to show in list. The remaining number of
 #'   files n_show are noted at the end of the list but the file names are not
 #'   displayed. Defaults to 10.
+#' @param show_full If `TRUE`, always show the full file path available. If
+#'   `FALSE`, show just the base name. Set to `FALSE` automatically if path is a
+#'   vector of file names is a single directory.
 #' @param include_dirs If `TRUE`, include directories in listed files. Defaults
 #'   to `FALSE`. Passed to the include.dirs parameter of [base::list.files()] if
 #'   path is a directory.
@@ -35,6 +39,7 @@ cli_list_files <- function(path = NULL,
                            text = NULL,
                            bullet = "*",
                            n_show = 10,
+                           show_full = FALSE,
                            include_dirs = TRUE,
                            return_list = FALSE,
                            .envir = current_env(),
@@ -48,7 +53,11 @@ cli_list_files <- function(path = NULL,
     )
   } else if (any(has_fileext(path))) {
     files <- path
-    path <- NULL
+    path <- unique(dirname(files))
+    if ((length(path) != 1) || all(path == ".")) {
+      show_full <- TRUE
+      path <- NULL
+    }
   }
 
   if (identical(files, character(0))) {
@@ -73,9 +82,14 @@ cli_list_files <- function(path = NULL,
   )
 
   style <- "file"
+  show_files <- files
+
+  if (isFALSE(show_full)) {
+    show_files <- basename(files)
+  }
 
   cli::cli_bullets(
-    text = bulletize(files, n_show = n_show, style = style)
+    text = bulletize(show_files, n_show = n_show, style = style)
   )
 
   if (return_list) {
