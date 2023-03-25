@@ -5,14 +5,15 @@
 \title{Display a list of files as a list of items}
 \usage{
 cli_list_files(
-  path,
+  path = NULL,
+  files = NULL,
   pattern = NULL,
-  full.names = FALSE,
-  message = "{length(files)} file{?s} found in {.path {path}}:",
+  text = NULL,
   bullet = "*",
   n_show = 10,
-  .envir = current_env(),
+  include_dirs = TRUE,
   return_list = FALSE,
+  .envir = current_env(),
   ...
 )
 }
@@ -24,14 +25,16 @@ cli_list_files(
     be converted to the native encoding (and if that fails, considered
     non-existent).}
 
+\item{files}{List to file names to display. Ignored if path is provided. If
+path is a vector of existing files, path is used as files and path is
+treated as \code{NULL}.}
+
 \item{pattern}{an optional \link[base]{regular expression}.  Only file names
     which match the regular expression will be returned.}
 
-\item{full.names}{a logical value.  If \code{TRUE}, the directory
-    path is prepended to the file names to give a relative file path.
-    If \code{FALSE}, the file names (rather than paths) are returned.}
-
-\item{message}{Passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}.}
+\item{text}{Passed to \code{\link[cli:cli_alert]{cli::cli_alert_info()}}. If \code{NULL} (default), text
+appears reporting the number of files/folders found at the path (if path
+provided).}
 
 \item{bullet}{Character defining style to use list of file names.}
 
@@ -39,12 +42,16 @@ cli_list_files(
 files n_show are noted at the end of the list but the file names are not
 displayed. Defaults to 10.}
 
-\item{.envir}{Passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}. Defaults to
-\code{\link[rlang:stack]{rlang::current_env()}} rather than \code{\link[=parent.frame]{parent.frame()}} to support evaluation
-of default message that includes the number of files found at the path.}
+\item{include_dirs}{If \code{TRUE}, include directories in listed files. Defaults
+to \code{FALSE}. Passed to the include.dirs parameter of \code{\link[base:list.files]{base::list.files()}} if
+path is a directory.}
 
 \item{return_list}{If \code{TRUE}, return the list of files after displaying the
 cli message. Defaults to \code{FALSE}.}
+
+\item{.envir}{Passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}. Defaults to
+\code{\link[rlang:stack]{rlang::current_env()}} rather than \code{\link[=parent.frame]{parent.frame()}} to support evaluation
+of default message that includes the number of files found at the path.}
 
 \item{...}{
   Arguments passed on to \code{\link[base:list.files]{base::list.files}}
@@ -53,6 +60,9 @@ cli message. Defaults to \code{FALSE}.}
     names of visible files are returned (following Unix-style visibility,
     that is files whose name does not start with a dot).  If \code{TRUE},
     all file names will be returned.}
+    \item{\code{full.names}}{a logical value.  If \code{TRUE}, the directory
+    path is prepended to the file names to give a relative file path.
+    If \code{FALSE}, the file names (rather than paths) are returned.}
     \item{\code{recursive}}{logical.  Should the listing recurse into directories?}
     \item{\code{ignore.case}}{logical.  Should pattern-matching be case-insensitive?}
     \item{\code{include.dirs}}{logical.  Should subdirectory names be included in

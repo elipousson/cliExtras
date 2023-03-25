@@ -1,7 +1,12 @@
 #' Display a list of files as a list of items
 #'
 #' @inheritParams base::list.files
-#' @param message Passed to [cli::cli_inform()].
+#' @param files List to file names to display. Ignored if path is provided. If
+#'   path is a vector of existing files, path is used as files and path is
+#'   treated as `NULL`.
+#' @param text Passed to [cli::cli_alert_info()]. If `NULL` (default), text
+#'   appears reporting the number of files/folders found at the path (if path
+#'   provided).
 #' @param bullet Character defining style to use list of file names.
 #' @param .envir Passed to [cli::cli_inform()]. Defaults to
 #'   [rlang::current_env()] rather than [parent.frame()] to support evaluation
@@ -9,6 +14,9 @@
 #' @param n_show Number of file names to show in list. The remaining number of
 #'   files n_show are noted at the end of the list but the file names are not
 #'   displayed. Defaults to 10.
+#' @param include_dirs If `TRUE`, include directories in listed files. Defaults
+#'   to `FALSE`. Passed to the include.dirs parameter of [base::list.files()] if
+#'   path is a directory.
 #' @param return_list If `TRUE`, return the list of files after displaying the
 #'   cli message. Defaults to `FALSE`.
 #' @inheritDotParams base::list.files
@@ -21,27 +29,45 @@
 #' @export
 #' @importFrom cli cli_inform cli_bullets
 #' @importFrom rlang set_names
-cli_list_files <- function(path,
+cli_list_files <- function(path = NULL,
+                           files = NULL,
                            pattern = NULL,
-                           full.names = FALSE,
-                           message = "{length(files)} file{?s} found in {.path {path}}:",
+                           text = NULL,
                            bullet = "*",
                            n_show = 10,
-                           .envir = current_env(),
+                           include_dirs = TRUE,
                            return_list = FALSE,
+                           .envir = current_env(),
                            ...) {
-  files <- list.files(path = path, pattern = pattern, full.names = full.names, ...)
+  if (all(is_dir(path))) {
+    files <- list.files(
+      path = path,
+      pattern = pattern,
+      include.dirs = include_dirs,
+      ...
+    )
+  } else if (any(has_fileext(path))) {
+    files <- path
+    path <- NULL
+  }
 
   if (identical(files, character(0))) {
-    cli::cli_alert_danger(
-      "No files found at {.arg path}: {.path {path}}"
-    )
-
+    text <- "No files found in {.arg files}."
+    if (!is.null(path)) {
+      text <- "No files found at {.arg path}: {.path {path}}"
+    }
+    cli::cli_alert_danger(text)
     return(invisible(NULL))
   }
 
+  if (!include_dirs) {
+    files <- files[!is_dir(files)]
+  }
+
+  text <- set_files_text(path, files, text)
+
   cli::cli_alert_info(
-    text = message,
+    text = text,
     wrap = TRUE,
     .envir = .envir
   )
@@ -49,10 +75,39 @@ cli_list_files <- function(path,
   style <- "file"
 
   cli::cli_bullets(
-    bulletize(files, n_show = n_show, style = style)
+    text = bulletize(files, n_show = n_show, style = style)
   )
 
   if (return_list) {
     return(invisible(files))
   }
+}
+
+#' @noRd
+set_files_text <- function(path = NULL,
+                           files = NULL,
+                           text = NULL) {
+  if (!is.null(text)) {
+    return(text)
+  }
+
+  has_dirs <- any(is_dir(files))
+
+  if (has_dirs) {
+    text <- "{length(files)} file/folder{?s} found:"
+  } else {
+    text <- "{length(files)} file{?s} found:"
+  }
+
+  if (is.null(path) || (length(path) > 1)) {
+    return(text)
+  }
+
+  if (has_dirs) {
+    text <- "{length(files)} file/folder{?s} found at {.path {path}}:"
+  } else {
+    text <- "{length(files)} file{?s} found at {.path {path}}:"
+  }
+
+  text
 }
