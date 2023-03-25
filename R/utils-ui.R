@@ -116,7 +116,7 @@ bulletize <- function(x,
   n_show_actual <- compute_n_show(n, n_show, n_fudge)
   out <- utils::head(x, n_show_actual)
 
-  if (!is_all_null(c(before, sep, after))) {
+  if (!is_all_null(list(before, sep, after))) {
     out <- paste0(before, sep, out, after)
   }
 
@@ -124,7 +124,7 @@ bulletize <- function(x,
     out <- stylize(out, style, bracket)
   }
 
-  out <- rlang::set_names(out, rep(bullet, n_show_actual))
+  out <- rlang::set_names(out, rep.int(bullet, n_show_actual))
 
   n_not_shown <- n - n_show_actual
 

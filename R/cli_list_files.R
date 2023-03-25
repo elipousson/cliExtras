@@ -32,22 +32,27 @@ cli_list_files <- function(path,
                            ...) {
   files <- list.files(path = path, pattern = pattern, full.names = full.names, ...)
 
-  cli::cli_inform(
-    message = message,
+  if (identical(files, character(0))) {
+    cli::cli_alert_danger(
+      "No files found at {.arg path}: {.path {path}}"
+    )
+
+    return(invisible(NULL))
+  }
+
+  cli::cli_alert_info(
+    text = message,
+    wrap = TRUE,
     .envir = .envir
   )
-  # style <- "field"
-  # if (full.names | (path == getwd())) {
+
   style <- "file"
-  # }
 
   cli::cli_bullets(
     bulletize(files, n_show = n_show, style = style)
   )
 
   if (return_list) {
-    return(files)
+    return(invisible(files))
   }
-
-  invisible()
 }
