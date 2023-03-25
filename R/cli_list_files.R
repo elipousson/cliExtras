@@ -75,9 +75,8 @@ cli_list_files <- function(path = NULL,
 
   text <- set_files_text(path, files, text)
 
-  cli::cli_alert_info(
+  cli::cli_bullets(
     text = text,
-    wrap = TRUE,
     .envir = .envir
   )
 
@@ -100,8 +99,13 @@ cli_list_files <- function(path = NULL,
 #' @noRd
 set_files_text <- function(path = NULL,
                            files = NULL,
-                           text = NULL) {
+                           text = NULL,
+                           bullet = "i") {
   if (!is.null(text)) {
+    if (!rlang::is_named(text)) {
+      text <- rlang::set_names(text, bullet)
+    }
+
     return(text)
   }
 
@@ -114,7 +118,7 @@ set_files_text <- function(path = NULL,
   }
 
   if (is.null(path) || (length(path) > 1)) {
-    return(text)
+    return(rlang::set_names(text, bullet))
   }
 
   if (has_dirs) {
@@ -123,5 +127,5 @@ set_files_text <- function(path = NULL,
     text <- "{length(files)} file{?s} found at {.path {path}}:"
   }
 
-  text
+  rlang::set_names(text, bullet)
 }
