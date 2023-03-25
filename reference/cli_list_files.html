@@ -58,6 +58,7 @@
 <span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  bullet <span class="op">=</span> <span class="st">"*"</span>,</span>
 <span>  n_show <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  show_full <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include_dirs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  return_list <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .envir <span class="op">=</span> <span class="fu">current_env</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -78,8 +79,9 @@
 
 <dt>files</dt>
 <dd><p>List to file names to display. Ignored if path is provided. If
-path is a vector of existing files, path is used as files and path is
-treated as <code>NULL</code>.</p></dd>
+path is a vector of existing files, path is used as files. If files share a
+single directory, path is set to that directory, otherwise path is set to
+<code>NULL</code>.</p></dd>
 
 
 <dt>pattern</dt>
@@ -101,6 +103,12 @@ provided).</p></dd>
 <dd><p>Number of file names to show in list. The remaining number of
 files n_show are noted at the end of the list but the file names are not
 displayed. Defaults to 10.</p></dd>
+
+
+<dt>show_full</dt>
+<dd><p>If <code>TRUE</code>, always show the full file path available. If
+<code>FALSE</code>, show just the base name. Set to <code>FALSE</code> automatically if path is a
+vector of file names is a single directory.</p></dd>
 
 
 <dt>include_dirs</dt>
