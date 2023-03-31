@@ -4,7 +4,7 @@
 \alias{cli_ask}
 \title{Display a Message then Read a Line from the Terminal}
 \usage{
-cli_ask(prompt = "?", ..., .envir = parent.frame())
+cli_ask(prompt = "?", ..., .envir = rlang::caller_env(), call = .envir)
 }
 \arguments{
 \item{prompt}{Characters to show as user prompt in console following
@@ -21,6 +21,11 @@ are interpreted.}
   }}
 
 \item{.envir}{Environment to evaluate the glue expressions in.}
+
+\item{call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
 Display a Message then Read a Line from the Terminal

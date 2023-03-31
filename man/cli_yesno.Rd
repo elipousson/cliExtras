@@ -12,14 +12,14 @@ cli_yesno(
   n_yes = 2,
   n_no = 1,
   call = .envir,
-  .envir = parent.frame()
+  .envir = rlang::caller_env()
 )
 
 check_yes(
   prompt = NULL,
   yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
   message = "Aborted. A yes is required.",
-  .envir = parent.frame(),
+  .envir = rlang::caller_env(),
   call = .envir
 )
 }

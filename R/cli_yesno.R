@@ -61,13 +61,14 @@
 #' @returns `TRUE` if yes response and `FALSE` if no response.
 #' @export
 #' @importFrom utils menu
+#' @importFrom rlang caller_env
 cli_yesno <- function(message,
                       yes = c("Yes", "Definitely", "For sure", "Yup", "Yeah", "I agree", "Absolutely"),
                       no = c("No way", "Not now", "Negative", "No", "Nope", "Absolutely not"),
                       n_yes = 2,
                       n_no = 1,
                       call = .envir,
-                      .envir = parent.frame()) {
+                      .envir = rlang::caller_env()) {
   check_interactive(
     c(
       "User input required, but session is not interactive.",
@@ -96,16 +97,19 @@ cli_yesno <- function(message,
 #' @param prompt For [check_yes()], the prompt is always preceded by "? " and
 #'   followed by "(Y/n)" and padded with non-breaking spaces on both sides.
 #' @export
+#' @importFrom rlang caller_env
+#' @importFrom cli cli_abort
 check_yes <- function(prompt = NULL,
                       yes = c("", "Y", "Yes", "Yup", "Yep", "Yeah"),
                       message = "Aborted. A yes is required.",
-                      .envir = parent.frame(),
+                      .envir = rlang::caller_env(),
                       call = .envir) {
   resp <- cli_ask(paste0("?\u00a0", prompt, "\u00a0(Y/n)"), .envir = .envir)
 
-  cli_abort_ifnot(
+  cli_ifnot(
+    x = tolower(resp) %in% tolower(yes),
     message = message,
-    condition = tolower(resp) %in% tolower(yes),
+    .fn = cli::cli_abort,
     .envir = .envir,
     call = call
   )

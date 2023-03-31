@@ -88,7 +88,12 @@ cli_list_files <- function(path = NULL,
   }
 
   cli::cli_bullets(
-    text = bulletize(show_files, n_show = n_show, style = style)
+    text = bulletize(
+      show_files,
+      bullet = bullet,
+      n_show = n_show,
+      style = style
+    )
   )
 
   if (return_list) {
