@@ -107,7 +107,7 @@ check_yes <- function(prompt = NULL,
   resp <- cli_ask(paste0("?\u00a0", prompt, "\u00a0(Y/n)"), .envir = .envir)
 
   cli_ifnot(
-    x = tolower(resp) %in% tolower(yes),
+    x = all(tolower(resp) %in% tolower(yes)),
     message = message,
     .fn = cli::cli_abort,
     .envir = .envir,
