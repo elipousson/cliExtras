@@ -98,16 +98,10 @@ item from choices.</p></dd>
 
 
 <dt>call</dt>
-<dd><p>The execution environment of a currently running
-function, e.g. <code>call = caller_env()</code>. The corresponding function
-call is retrieved and mentioned in error messages as the source
-of the error.</p>
-<p>You only need to supply <code>call</code> when throwing a condition from a
-helper function which wouldn't be relevant to mention in the
-message.</p>
-<p>Can also be <code>NULL</code> or a <a href="https://rlang.r-lib.org/reference/topic-defuse.html" class="external-link">defused function call</a> to
-respectively not display any call or hard-code a code to display.</p>
-<p>For more information about error calls, see <a href="https://rlang.r-lib.org/reference/topic-error-call.html" class="external-link">Including function calls in error messages</a>.</p></dd>
+<dd><p>The execution environment of a currently
+running function, e.g. <code>caller_env()</code>. The function will be
+mentioned in error messages as the source of the error. See the
+<code>call</code> argument of <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code> for more information.</p></dd>
 
 
 <dt>.envir</dt>
