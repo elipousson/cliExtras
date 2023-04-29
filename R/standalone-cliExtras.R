@@ -3,7 +3,7 @@
 # file: standalone-cliExtras.R
 # last-updated: 2023-03-30
 # license: https://unlicense.org
-# imports: rlang, cli
+# imports: cli
 # ---
 #
 # ## Changelog
