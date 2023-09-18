@@ -11,6 +11,7 @@ cli_if(
   .predicate = rlang::is_true,
   .fn = NULL,
   .default = cli::cli_alert,
+  .envir = rlang::caller_env(),
   call = rlang::caller_env()
 )
 
@@ -20,6 +21,7 @@ cli_ifnot(
   .predicate = rlang::is_false,
   .fn = NULL,
   .default = cli::cli_alert,
+  .envir = rlang::caller_env(),
   call = rlang::caller_env()
 )
 }

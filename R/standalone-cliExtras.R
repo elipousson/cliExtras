@@ -8,6 +8,9 @@
 #
 # ## Changelog
 #
+# 2023-09-18:
+# * Add missing `.envir` parameter to `cli_if()` and `cli_ifnot()`
+#
 # 2023-03-30:
 # * Added `cli_ask()` and `check_yes()`
 #
@@ -37,6 +40,7 @@ cli_if <- function(x = NULL,
                    .predicate = rlang::is_true,
                    .fn = NULL,
                    .default = cli::cli_alert,
+                   .envir = rlang::caller_env(),
                    call = rlang::caller_env()) {
   check <- rlang::try_fetch(
     .predicate(x),
@@ -59,7 +63,7 @@ cli_if <- function(x = NULL,
 
   if (rlang::is_true(check)) {
     .fn <- .fn %||% .default
-    fn_call <- rlang::call2(.fn, ...)
+    fn_call <- rlang::call2(.fn, ..., .envir = .envir)
     if (rlang::has_name(rlang::call_args_names(fn_call), "call")) {
       fn_call <- rlang::call_modify(fn_call, call = call, .homonyms = "last")
     }
@@ -72,6 +76,7 @@ cli_ifnot <- function(x = NULL,
                       .predicate = rlang::is_false,
                       .fn = NULL,
                       .default = cli::cli_alert,
+                      .envir = rlang::caller_env(),
                       call = rlang::caller_env()) {
   cli_if(
     x = x,
@@ -79,6 +84,7 @@ cli_ifnot <- function(x = NULL,
     .predicate = .predicate,
     .fn = .fn,
     .default = .default,
+    .envir = .envir,
     call = call
   )
 }
