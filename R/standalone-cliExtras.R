@@ -1,9 +1,9 @@
 # ---
 # repo: elipousson/cliExtras
 # file: standalone-cliExtras.R
-# last-updated: 2023-03-30
+# last-updated: 2023-09-18
 # license: https://unlicense.org
-# imports: cli
+# imports: [rlang, cli]
 # ---
 #
 # ## Changelog
