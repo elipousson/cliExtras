@@ -1,12 +1,15 @@
 # ---
 # repo: elipousson/cliExtras
 # file: standalone-cliExtras.R
-# last-updated: 2023-09-18
+# last-updated: 2024-04-02
 # license: https://unlicense.org
-# imports: [rlang, cli]
+# imports: [rlang, cli (>= 3.4.0)]
 # ---
 #
 # ## Changelog
+#
+# 2024-04-02:
+# * Wrap .predicate in `()` for compatibility with cli >= 3.4.0.
 #
 # 2023-09-18:
 # * Add missing `.envir` parameter to `cli_if()` and `cli_ifnot()`
@@ -54,7 +57,7 @@ cli_if <- function(x = NULL,
     }
 
     cli::cli_abort(
-      "{.fn {.predicate}} must return a {.cls logical} object,
+      "{.fn {(.predicate)}} must return a {.cls logical} object,
       not {.obj_type_friendly {check}}.",
       call = call,
       parent = parent

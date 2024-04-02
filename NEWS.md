@@ -6,6 +6,7 @@
 * Add `standalone-cliExtras.R` script that can be imported with `usethis::use_standalone()` (available in the development version of `{usethis}`).
 * Adopt lifecycle to flag `cli_paths()` as a superseded function.
 * Add `.envir` to standalone `cli_if()` and `cli_ifnot()` functions.
+* Fix compatibility issue w/ cli (>= 3.4.0) for standalone function. (2024-04-02)
 
 # cliExtras 0.1.0.9001 (2023-03-16)
 
