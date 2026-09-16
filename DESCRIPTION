@@ -32,6 +32,7 @@ Collate:
     'standalone-cliExtras.R'
     'cli_ask.R'
     'cli_bulletize.R'
+    'cli_fmt_text.R'
     'cli_if.R'
     'cli_list_files.R'
     'cli_menu.R'
