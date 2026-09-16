@@ -19,7 +19,7 @@ cli_menu(
 \arguments{
 \item{choices}{Required vector or list of choices.}
 
-\item{title}{Title for menu. Character vector passed to \code{\link[cli:cli_h1]{cli::cli_h2()}} if
+\item{title}{Title for menu. Character vector passed to \code{\link[cli:cli_h2]{cli::cli_h2()}} if
 title is length 1 or to \code{\link[cli:cli_bullets]{cli::cli_bullets()}} if length is greater than 1.}
 
 \item{message}{Additional message to display after choices and before prompt.}

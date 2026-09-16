@@ -9,7 +9,7 @@ cli_paths(path, msg)
 \arguments{
 \item{path}{One or more file paths.}
 
-\item{msg}{Passed to message for \code{\link[=cli_inform]{cli_inform()}}}
+\item{msg}{Passed to message for \code{\link[cli:cli_inform]{cli_inform()}}}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}

@@ -24,7 +24,7 @@ check_yes(
 )
 }
 \arguments{
-\item{message}{Passed to \code{\link[=cli_inform]{cli_inform()}}}
+\item{message}{Passed to \code{\link[cli:cli_inform]{cli_inform()}}}
 
 \item{yes, no}{Character strings with yes and no options.}
 
@@ -53,8 +53,8 @@ followed by "(Y/n)" and padded with non-breaking spaces on both sides.}
 \code{TRUE} if yes response and \code{FALSE} if no response.
 }
 \description{
-Adapted from \code{\link[yesno:yesno]{yesno::yesno()}} and \code{\link[usethis:ui-questions]{usethis::ui_yeah()}} to work with
-\code{\link[=cli_inform]{cli_inform()}}. This function does not respect the cliExtras.quiet option and
+Adapted from \code{\link[yesno:yesno]{yesno::yesno()}} and \code{\link[usethis:ui_yeah]{usethis::ui_yeah()}} to work with
+\code{\link[cli:cli_inform]{cli_inform()}}. This function does not respect the cliExtras.quiet option and
 aborts if the session is not interactive.
 }
 \details{

@@ -3,7 +3,7 @@
 #' A convenience function for creating progress messages that use piped data as
 #' an input.
 #'
-#' @param data Input data. Reference w/ "{data}" if .envir is currrent_env().
+#' @param data Input data. Reference w/ "\{data\}" if .envir is currrent_env().
 #' @param .envir The environment to use for auto-termination and for glue
 #'   substitution. It is also used to find and set the current progress bar.
 #'   Defaults to [current_env()] ([cli::cli_progress_bar()] uses

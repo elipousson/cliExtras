@@ -1,3 +1,6 @@
+#' @include standalone-cliExtras.R
+NULL
+
 #' Display a Message then Read a Line from the Terminal
 #'
 #' @param prompt Characters to show as user prompt in console following
@@ -20,3 +23,7 @@ cli_ask <- function(prompt = "?",
   }
   readline(paste0(prompt, "\u00a0"))
 }
+
+# Placeholder binding so `readline()` can be mocked with
+# testthat::local_mocked_bindings() (see ?testthat::local_mocked_bindings)
+readline <- NULL

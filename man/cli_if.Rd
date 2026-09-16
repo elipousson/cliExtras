@@ -8,21 +8,19 @@
 cli_if(
   x = NULL,
   ...,
-  .predicate = rlang::is_true,
+  .predicate = is_true,
   .fn = NULL,
-  .default = cli::cli_alert,
-  .envir = rlang::caller_env(),
-  call = rlang::caller_env()
+  .default = cli_alert,
+  call = caller_env()
 )
 
 cli_ifnot(
   x = NULL,
   ...,
-  .predicate = rlang::is_false,
+  .predicate = is_false,
   .fn = NULL,
-  .default = cli::cli_alert,
-  .envir = rlang::caller_env(),
-  call = rlang::caller_env()
+  .default = cli_alert,
+  call = caller_env()
 )
 }
 \arguments{

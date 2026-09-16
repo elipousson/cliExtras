@@ -17,11 +17,34 @@ Imports:
     lifecycle,
     rlang,
     utils
-Suggests: 
+Suggests:
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+Collate:
+    'cliExtras-package.R'
+    'cli_abort_ifnot.R'
+    'cli_alert_ifnot.R'
+    'standalone-cliExtras.R'
+    'cli_ask.R'
+    'cli_bulletize.R'
+    'cli_fmt_text.R'
+    'cli_if.R'
+    'cli_list_files.R'
+    'cli_menu.R'
+    'cli_paths.R'
+    'cli_progress_pipe.R'
+    'cli_quiet.R'
+    'cli_ul_items.R'
+    'cli_vec.R'
+    'cli_yesno.R'
+    'register_cli_format.R'
+    'staticimports.R'
+    'utils-check.R'
+    'utils-ui.R'
+    'utils.R'
+Config/roxygen2/version: 8.1.0

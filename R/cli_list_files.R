@@ -60,6 +60,10 @@ cli_list_files <- function(path = NULL,
     }
   }
 
+  if (is.null(files)) {
+    files <- character(0)
+  }
+
   if (identical(files, character(0))) {
     text <- "No files found in {.arg files}."
     if (!is.null(path)) {
@@ -70,7 +74,11 @@ cli_list_files <- function(path = NULL,
   }
 
   if (!include_dirs) {
-    files <- files[!is_dir(files)]
+    check_files <- files
+    if (!is.null(path) && (length(path) == 1)) {
+      check_files <- file.path(path, files)
+    }
+    files <- files[!is_dir(check_files)]
   }
 
   text <- set_files_text(path, files, text)
@@ -114,7 +122,11 @@ set_files_text <- function(path = NULL,
     return(text)
   }
 
-  has_dirs <- any(is_dir(files))
+  check_files <- files
+  if (!is.null(path) && (length(path) == 1)) {
+    check_files <- file.path(path, files)
+  }
+  has_dirs <- any(is_dir(check_files))
 
   if (has_dirs) {
     text <- "{length(files)} file/folder{?s} found:"

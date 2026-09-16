@@ -15,7 +15,7 @@ cli_progress_pipe(
 )
 }
 \arguments{
-\item{data}{Input data. Reference w/ "{data}" if .envir is currrent_env().}
+\item{data}{Input data. Reference w/ "\{data\}" if .envir is currrent_env().}
 
 \item{...}{
   Arguments passed on to \code{\link[cli:cli_progress_bar]{cli::cli_progress_bar}}
@@ -58,6 +58,18 @@ then you don't need to use this argument. Explicitly including these
 constants or variables in \code{extra} can result in cleaner code. In
 the rare cases when you need to refer to the same progress bar from
 multiple functions, and you can them to \code{extra}.}
+    \item{\code{inc}}{Increment in progress units. This is ignored if \code{set} is
+not \code{NULL}.}
+    \item{\code{set}}{Set the current number of progress units to this value.
+Ignored if \code{NULL}.}
+    \item{\code{id}}{Progress bar to update or terminate. If \code{NULL}, then the
+current progress bar of the calling function (or \code{.envir} if
+specified) is updated or terminated.}
+    \item{\code{force}}{Whether to force a display update, even if no update is
+due.}
+    \item{\code{result}}{String to select successful or unsuccessful termination.
+It is only used if the progress bar is not cleared from the screen.
+It can be one of \code{"done"}, \code{"failed"}, \code{"clear"}, and \code{"auto"}.}
   }}
 
 \item{current}{Passed to \code{\link[cli:cli_progress_bar]{cli_progress_bar()}}.}
@@ -69,7 +81,7 @@ terminated. Defaults to \code{FALSE} (\code{\link[cli:cli_progress_bar]{cli::cli
 
 \item{.envir}{The environment to use for auto-termination and for glue
 substitution. It is also used to find and set the current progress bar.
-Defaults to \code{\link[=current_env]{current_env()}} (\code{\link[cli:cli_progress_bar]{cli::cli_progress_bar()}} uses
+Defaults to \code{\link[rlang:current_env]{current_env()}} (\code{\link[cli:cli_progress_bar]{cli::cli_progress_bar()}} uses
 \code{\link[=parent.frame]{parent.frame()}})}
 
 \item{time}{Passed to \code{\link[=Sys.sleep]{Sys.sleep()}} for optional pause after displaying

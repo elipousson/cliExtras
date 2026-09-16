@@ -34,7 +34,7 @@ single directory, path is set to that directory, otherwise path is set to
 \item{pattern}{an optional \link[base]{regular expression}.  Only file names
     which match the regular expression will be returned.}
 
-\item{text}{Passed to \code{\link[cli:cli_alert]{cli::cli_alert_info()}}. If \code{NULL} (default), text
+\item{text}{Passed to \code{\link[cli:cli_alert_info]{cli::cli_alert_info()}}. If \code{NULL} (default), text
 appears reporting the number of files/folders found at the path (if path
 provided).}
 
@@ -55,8 +55,8 @@ path is a directory.}
 \item{return_list}{If \code{TRUE}, return the list of files after displaying the
 cli message. Defaults to \code{FALSE}.}
 
-\item{.envir}{Passed to \code{\link[cli:cli_abort]{cli::cli_inform()}}. Defaults to
-\code{\link[rlang:stack]{rlang::current_env()}} rather than \code{\link[=parent.frame]{parent.frame()}} to support evaluation
+\item{.envir}{Passed to \code{\link[cli:cli_inform]{cli::cli_inform()}}. Defaults to
+\code{\link[rlang:current_env]{rlang::current_env()}} rather than \code{\link[=parent.frame]{parent.frame()}} to support evaluation
 of default message that includes the number of files found at the path.}
 
 \item{...}{

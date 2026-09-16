@@ -1,5 +1,9 @@
 # cliExtras development
 
+* Expand test coverage to cover all exported functions.
+* Fix `Collate` order so the documented `cli_if()`, `cli_ifnot()`, `cli_ask()`, `check_yes()`, and `cli_quiet()` functions are no longer silently shadowed at load time by the duplicate definitions in `standalone-cliExtras.R`.
+* Fix `cli_list_files()` crashing when no files are found and `path` does not exist or has no file extension.
+* Fix `cli_list_files()` not correctly excluding directories when `include_dirs = FALSE`, or detecting directories for the "file/folder" count message, when `path` is a directory.
 * Update `cli_quiet()` to work as a helper function within other functions to set the cli.default_handler option to `suppressMessages()`.
 * Refactor `cli_abort_ifnot()` and similar functions to use the new `cli_if()` function.
 * Refactor `cli_list_files()` including replacing message parameter with text and allowing option to pass character vector with files directly.

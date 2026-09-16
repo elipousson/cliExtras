@@ -76,7 +76,7 @@ functions like \code{cli_info_ifnot()}.}
 }
 \description{
 Alerts are typically short status messages. Note: These functions use \code{wrap = TRUE} by default. Alert messages can be muffled by \code{\link[=set_cli_quiet]{set_cli_quiet()}} while
-\code{\link[cli:cli_abort]{cli::cli_inform()}} messages are not.
+\code{\link[cli:cli_inform]{cli::cli_inform()}} messages are not.
 }
 \examples{
 \dontrun{

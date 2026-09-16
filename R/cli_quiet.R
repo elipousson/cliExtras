@@ -1,3 +1,6 @@
+#' @include standalone-cliExtras.R
+NULL
+
 #' Use rlang to set cli.default_handler to suppressMessages as a local or
 #' permanent option
 #'

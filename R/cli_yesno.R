@@ -42,6 +42,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+#' @include standalone-cliExtras.R
+NULL
+
 #' Yes No with Variable Responses using cli
 #'
 #' Adapted from [yesno::yesno()] and [usethis::ui_yeah()] to work with

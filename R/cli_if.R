@@ -1,3 +1,6 @@
+#' @include standalone-cliExtras.R
+NULL
+
 #' Execute a cli function if a predicate function returns TRUE
 #'
 #' Execute a function if a predicate function returns TRUE. Intended for use
