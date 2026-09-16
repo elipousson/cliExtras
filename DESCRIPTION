@@ -2,7 +2,7 @@ Type: Package
 Package: cliExtras
 Title: A Collection of Helper Functions for the cli package
 Version: 0.1.0.9001
-Authors@R: 
+Authors@R:
     person("Eli", "Pousson", , "eli.pousson@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8280-1706"))
 Maintainer: Eli Pousson <eli.pousson@gmail.com>
@@ -12,7 +12,7 @@ License: MIT + file LICENSE
 URL: https://github.com/elipousson/cliExtras,
     https://elipousson.github.io/cliExtras/
 BugReports: https://github.com/elipousson/cliExtras/issues
-Imports: 
+Imports:
     cli (>= 3.4.0),
     lifecycle,
     rlang,
@@ -32,7 +32,6 @@ Collate:
     'standalone-cliExtras.R'
     'cli_ask.R'
     'cli_bulletize.R'
-    'cli_fmt_text.R'
     'cli_if.R'
     'cli_list_files.R'
     'cli_menu.R'
