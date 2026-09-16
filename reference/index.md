@@ -1,0 +1,76 @@
+# Package index
+
+## All functions
+
+- [`cli_abort_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  [`cli_abort_if()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  [`cli_warn_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  [`cli_warn_if()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  [`cli_inform_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  [`cli_inform_if()`](https://elipousson.github.io/cliExtras/reference/cli_abort_ifnot.md)
+  : Signal an error, warning, or message with a cli formatted message if
+  any expressions in ... are not all TRUE or are all TRUE
+
+- [`cli_alert_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_danger_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_info_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_success_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_warning_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_alert_if()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_danger_if()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_info_if()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_success_if()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  [`cli_warning_if()`](https://elipousson.github.io/cliExtras/reference/cli_alert_ifnot.md)
+  : CLI conditional alerts
+
+- [`cli_ask()`](https://elipousson.github.io/cliExtras/reference/cli_ask.md)
+  : Display a Message then Read a Line from the Terminal
+
+- [`cli_bulletize()`](https://elipousson.github.io/cliExtras/reference/cli_bulletize.md)
+  : List of items using bulletize helper
+
+- [`bracketize()`](https://elipousson.github.io/cliExtras/reference/cli_helpers.md)
+  [`stylize()`](https://elipousson.github.io/cliExtras/reference/cli_helpers.md)
+  [`bulletize()`](https://elipousson.github.io/cliExtras/reference/cli_helpers.md)
+  : Assorted helper functions to format text and vectors for cli
+  messages
+
+- [`cli_if()`](https://elipousson.github.io/cliExtras/reference/cli_if.md)
+  [`cli_ifnot()`](https://elipousson.github.io/cliExtras/reference/cli_if.md)
+  : Execute a cli function if a predicate function returns TRUE
+
+- [`cli_list_files()`](https://elipousson.github.io/cliExtras/reference/cli_list_files.md)
+  : Display a list of files as a list of items
+
+- [`cli_menu()`](https://elipousson.github.io/cliExtras/reference/cli_menu.md)
+  : Display a Message then Read a Line from the Terminal
+
+- [`cli_paths()`](https://elipousson.github.io/cliExtras/reference/cli_paths.md)
+  **\[superseded\]** : Display a list of file paths
+
+- [`cli_progress_pipe()`](https://elipousson.github.io/cliExtras/reference/cli_progress_pipe.md)
+  : Simplified cli progress message for combining with a pipe
+
+- [`cli_quiet()`](https://elipousson.github.io/cliExtras/reference/cli_quiet.md)
+  : Use rlang to set cli.default_handler to suppressMessages as a local
+  or permanent option
+
+- [`cli_ul_items()`](https://elipousson.github.io/cliExtras/reference/cli_ul_items.md)
+  : Format a list of items as an unordered list with cli_ul()
+
+- [`cli_yesno()`](https://elipousson.github.io/cliExtras/reference/cli_yesno.md)
+  [`check_yes()`](https://elipousson.github.io/cliExtras/reference/cli_yesno.md)
+  : Yes No with Variable Responses using cli
+
+- [`quiet_cli_inform()`](https://elipousson.github.io/cliExtras/reference/quiet_cli_inform.md)
+  :
+
+  Quiet version of
+  [`cli_inform()`](https://cli.r-lib.org/reference/cli_abort.html)
+
+- [`register_cli_format()`](https://elipousson.github.io/cliExtras/reference/register_cli_format.md)
+  : Register a custom cli format method with registerS3method
+
+- [`set_cli_quiet()`](https://elipousson.github.io/cliExtras/reference/set_cli_quiet.md)
+  **\[deprecated\]** : Set the cli.default_handler and cliExtras.quiet
+  options
